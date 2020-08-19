@@ -3,63 +3,46 @@
 \vspace*{-0.99cm}
 {\bf Important note}: Please consult the DAH manual to familiarise yourself with the equipment, including the Raspberry-Pi, LEDs, temperature sensors, ADCs, DACs, I/O, switches, breadboard and connectors.
 The manual contains detailed instructions on how to operate the Raspberry-Pi.
-It is suggested to use the chromium web browser. %, since it is relatively fast.
 To copy python code snippets (see below) into your python scripts, download these files from github, see \url{https://github.com/fmuheim/DAH}.
 Data sheets for all electronic elements are available from Dropbox, see: \url{https://www.dropbox.com/sh/gfnisnh4ntnum1d/AAAWtNL_AhcpR8PZ_QmqZpsja?n=112609310}.  
-The DAH manual also provides information on how to start and stop the \webIOPi web server.
 
-\section{Checkpoint  1: LEDs and Switches}
+\section{Checkpoint 1: LEDs and Switches}
 
 \begin{enumerate}
-\item [1.1.] Control an LED with the Raspberry-Pi by completing the following steps. Connect the Raspberry-Pi to a breadboard and start the \webIOPi web server.
-Start the chromium web browser %(unfortunately epiphany does not work correctly for this task) 
-and go to the \webIOPi header webpage.
-Set GPIO 24 to OUT, connect this output to an LED with a 1~kOhm resistor in series to ground, and switch the LED on and off using the web interface.
-Repeat the exercise with negative logic (active low) by connecting the LED with a 1~kOhm resistor in series to 3.3 V.
-Draw a schematic diagram for this circuit, see example below.  
+\item [1.1.] Control an LED with the Raspberry-Pi by completing the following steps.
+Connect the Raspberry-Pi to a breadboard using the adapter.
+On the breadboard, connect GPIO~24 to an LED with a 1~kOhm resistor in series to ground: this is a ``positive logic'' or ``active high'' circuit, as descibed in the lab manual.
 
-%\hfill [2 marks]
 \vspace*{-3mm}
 \begin{center}                                        
 {\includegraphics[width=10cm]{figs/ActiveHighLED}}
 \end{center}
-                                                            
- 
-\item [1.2.] Using positive logic (active high) connect a push-button Switch between 3.3V and GPIO23 and, with a 1kOhm resistor in series, to ground and explain what happens on the \webIOPi header webpage.
-Draw a schematic diagram for this circuit. Afterwards stop the \webIOPi web server.
-%Repeat the exercise with negative logic, explain it and draw a schematic diagram. 
- 
-%\hfill [1 mark]\\
-      
 
-\item [1.3.] Connect an LED with a 1~kOhm resistor as in checkpoint 1.1 above. Start python interactively to control GPIO 24.
+\newpage
 Using this code template, import the GPIO library and turn the LED on and off.
-%
-\begin{verbatim}
-    studentnn@dahpimm  ~ $ python3
-\end{verbatim}
 \lstinputlisting{../scripts/checkpoint_1a.py}
 
+Repeat the exercise with negative logic (active low) by connecting the LED with a 1~kOhm resistor in series to 3.3~V.
+Draw a schematic diagram for this circuit like the example above.
+ 
 
-Alter the first python script to blink an LED, connected with either positive or negative logic,
-by adding a while loop.\\
+\item [1.2.] Modify the first python script to blink the LED continuously.
+You can do this by adding a while loop. \\
 
 \lstinputlisting{../scripts/checkpoint_1b.py}
-%\vspace*{-0.5cm}
-%\hfill [2 marks]\\
 
+Since this code will keep running forever, you'll need to press CTRL+C to stop it.
+ 
 
-\item [1.4.] Connect the push button switch using using negative logic (active low) and the LED circuit with positive logic (active high).
-Write a python script to toggle the LED state every time the push button switch is pushed. \\
-%once using negative logic for the push button switch. Connect the push and positive logic for the LED. \\
+\item [1.3.] Using positive logic (active high) connect a push-button switch between 3.3V and GPIO23 and, with a 1~kOhm resistor in series, to ground.
+See the diagram in your lab manual for more information.
+Modify your python script to toggle the LED state every time the push button switch is pushed. \\
 
 \lstinputlisting{../scripts/checkpoint_1c.py}
-%\vspace*{-0.5cm}
-%\hfill [2 marks]\\
-
 
 \end{enumerate}
 
+{\bf This checkpoint is not assessed.}
 
 
 \newpage
@@ -76,36 +59,28 @@ We will also perform the opposite task, varying the brightness of an LED by conv
 \vspace*{-0.5cm}
 \begin{enumerate}
 
-\item [2.1.] Connect an ADC MCP3208 chip to the Raspberry Pi using the SPI Interface on pin GPIO 8 (SPI\_CE0).
-Make sure that all required connections between the MCP3208 and the Raspberry-Pi are made (see pin-out sheet).
+\item [2.1.] Connect an ADC MCP3208 chip to the Raspberry Pi using the SPI Interface.
+Make sure that all required connections between the MCP3208 and the Raspberry-Pi are made (see lab manual).
 Use a multimeter to check that power (VDD) and ground (AGND and DGND) are correctly connected.
-Explain what all connections are for.
 
 Connect a Light Dependent Resistor (LDR) and a 4.7~k$\Omega$ resistor as a voltage divider between 3.3 and 0~V, using an ADC input channel to measure the voltage in the middle.
-Use python interactively to read the voltages of all eight ADC channels.
+Use python to read the voltages of all eight ADC channels.
 Try reading a specific ADC channel, and experiment with all the other methods given below.
 You are encouraged to consult the following webpage \url{http://webiopi.trouch.com/}($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Analogue).
 
-Explain how the ADC works and what the meaning of the return values of each method is.
-What is the primary ADC output and how is the voltage output calculated from this?
-Cover the LDR with your hand, and explain how the ADC readings change. \\
-
 \lstinputlisting{../scripts/checkpoint_2a.py}
 \vspace*{-0.5cm}
-\hfill [3 marks]\\
 
-%\newpage
-\item [2.2.] Leave the ADC in place, but also connect the DAC MCP4922 chip to the Raspberry-Pi using the other SPI Interface on GPIO 7 (SPI\_CE1).
-Make sure that all required connections between the MCP4922 and the Raspberry-Pi are made (see pin-out sheet).
+\newpage
+\item [2.2.] Leave the ADC in place, but also connect the DAC MCP4922 chip to the Raspberry-Pi.
+Make sure that all required connections between the MCP4922 and the Raspberry-Pi are made (see lab manual).
 Use a multimeter to check that power (VDD) and ground (AVSS) are correctly connected.
-Explain how the DAC works and what all connections are for.
 
-Use python interactively to set a value --- e.g. 1.3 V --- to output VOUTA of the DAC.
+Use python to set a value --- e.g. 1.3~V --- to output VOUTA of the DAC.
 Measure this voltage with a multimeter. \\
 
 \lstinputlisting{../scripts/checkpoint_2b.py}
-\vspace*{-0.5cm}
-\hfill [2 marks]\\
+%\vspace*{-0.5cm}
 
 \item [2.3.] Connect one output of the DAC to an LED.
 Write a python script that varies the brightness of the LED by setting a series of different values for the output voltage of the DAC.
@@ -114,46 +89,83 @@ The laboratory is quite bright relative to an LED, so you might need to cover th
 Modify your script to read the ADC input each time you set the DAC output.
 Write the DAC setting and measured ADC values at each step to an output file with comments such that the content of the file will explain your work.
 
-
-\hfill [4 marks]\\
-
 \end{enumerate}
 
+Do not dismantle your circuit after this checkpoint!
+You can re-use most of it for Checkpoint~3.
 
+{\bf Assessment tasks: submit in LEARN}
+
+Explain what all connections to the ADC chip are for (do not simply copy information from the datasheet --- explain the practical purpose of these connections).
+Explain the meaning of the return values of each python method for the ADC.
+What is the primary (most fundamental) ADC output and how is the final voltage output calculated from this?
+Explain how the ADC readings change when you cover the LDR with your hand.
+\hfill {\bf[4~marks]} \\
+
+Explain what all the connections to the DAC chip are for.
+Show a photograph of your multimeter measuring (approximately) 1.3~V output from the DAC
+\hfill {\bf[2~marks]} \\
+
+Submit your code that controls the LED brightness using the DAC, and monitors the effect on the LDR using the ADC.
+Submit your output file.
+\hfill {\bf[4~marks]} \\
 
 \newpage
 \section{Checkpoint 3:  Generating and Sampling Analogue Signals}
 
 \begin{enumerate}
 
-\item [3.1.] Connect an ADC chip (MCP3208) to the Raspberry Pi, as in Checkpoint 2. Verify that the ADC works with a DC voltage produced with a potentiometer or an LDR in series with a 4.7~k$\Omega$ resistor 
+\item [3.1.] Connect an ADC chip (MCP3208) to the Raspberry Pi, as in Checkpoint 2 (or re-use your existing circuit).
 
-Use the signal generator to produce a repetitive signal, e.g. a sinusoidal waveform. Display the output on the oscilloscope. Set the amplitude of the signal such that the waveform can be read by the ADC chip, which can sample between 0 V and VREF = 3.3 V. Set the frequency to 10 Hz.  
+Use the bench-top signal generator to produce a repetitive signal, e.g. a sinusoidal waveform.
+Display the output on the oscilloscope.
+Set the amplitude of the signal such that the waveform can be read by the ADC chip, which can sample between 0~V and VREF = 3.3~V. Set the frequency to 10~Hz.
 
-Connect the output of the signal generator to an ADC input channel. Using python in interactive mode read a few samples of the ADC output. Comment on what you measure. [Caveat: Don't connect a signal with a voltage outside the range of the ADC chip, which could destroy it and the Raspberry Pi.] 
+Connect the output of the signal generator to an ADC input channel.
+Don't connect a signal with a voltage outside the range of the ADC chip, which could destroy it and the Raspberry Pi.
+Use python to read a few measurements from the ADC.
 
-\hfill [1 marks]\\
+%\hfill [1 marks]\\
 
-\item [3.2.] Measure the waveform produced by the signal generator by writing a python script that records 100 ADC samples and displays these on a graph. Always label plots correctly with title and axes and save these to a file (pdf format). 
-[Hint: Use the pylab interface for plotting graphs. Example files are available on github. ]
+\item [3.2.] Measure the waveform produced by the signal generator by writing a python script that records 100 ADC samples and displays these on a graph of voltage vs time.
+Calculate the (approximate) time between samples by measuring the start and end times of your sampling and dividing the difference by 100.
+You can use the pylab interface for plotting graphs --- example files are available on GitHub.
+Always label plots correctly with title and axes and save these to a file (pdf format).
 
-\hfill [2 marks] \\
+%\hfill [2 marks] \\
 
-\item [3.3.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.   First connect the signal from the signal generator to the oscilloscope. Read the input voltage for the high and low sections of the square waveform off the oscilloscope screen. For this use the trigger threshold dial to determine these voltage levels as precisely as possible. Then connect the signal to an ADC input channel. Write a python script that takes 100 ADC samples and writes these into a file, then expand the script to determine the average ADC voltages for the high and low sections of the square waveform and record the results. Reduce the amplitude of the input waveform by a factor of two and repeat above procedure. Plot the four calibration measurements, i.e. the measured ADC voltages (from the two sets of measurements of the  high and low sections) versus the four input voltages (measured with the oscilloscope) on a graph and comment.
+%\item [3.3.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.   First connect the signal from the signal generator to the oscilloscope. Read the input voltage for the high and low sections of the square waveform off the oscilloscope screen. For this use the trigger threshold dial to determine these voltage levels as precisely as possible. Then connect the signal to an ADC input channel. Write a python script that takes 100 ADC samples and writes these into a file, then expand the script to determine the average ADC voltages for the high and low sections of the square waveform and record the results. Reduce the amplitude of the input waveform by a factor of two and repeat above procedure. Plot the four calibration measurements, i.e. the measured ADC voltages (from the two sets of measurements of the  high and low sections) versus the four input voltages (measured with the oscilloscope) on a graph and comment.
 
-\hfill [2 marks] \\
+%\hfill [2 marks] \\
 
-\item[3.4.]	What is the maximum signal frequency with which you can properly record a given repetitive signal?   First, consider which would be the best waveform for this investigation. What is the sampling frequency? Explain what happens when a signal is undersampled. Make a plot with a waveform that is undersampled.   
+\item [3.3.] Given the time that you calculated elapses between ADC samples, what is the highest signal frequency that you expect you can measure correctly?
+(You may wish to research signal sampling a little before jumping to your answer.)
+Test input signals at a range of different frequencies to see if the results are as you expect.
 
-\hfill [2 marks] \\
+%\item[3.4.]	What is the maximum signal frequency with which you can properly record a given repetitive signal?   First, consider which would be the best waveform for this investigation. What is the sampling frequency? Explain what happens when a signal is undersampled. Make a plot with a waveform that is undersampled.   
 
-\item [3.5.] Connect a DAC chip (MCP4922) to the Raspberry Pi, as in Checkpoint 2.  Using a python script, generate a sinusoidal waveform on the DAC output and plot the waveform to a graph.
+%\hfill [2 marks] \\
 
-Use the ADC chip (MCP3208) to digitise the waveform generated by the DAC. Write a python script that takes 100 DAC samples and 100 ADC measurements and plot these on the same graph. Take into account the limitations encountered in 3.4.                                                          
+%\item [3.5.] Connect a DAC chip (MCP4922) to the Raspberry Pi, as in Checkpoint 2.  Using a python script, generate a sinusoidal waveform on the DAC output and plot the waveform to a graph.
+
+%Use the ADC chip (MCP3208) to digitise the waveform generated by the DAC. Write a python script that takes 100 DAC samples and 100 ADC measurements and plot these on the same graph. Take into account the limitations encountered in 3.4.                                                          
  
-\hfill [3 marks] 
+%\hfill [3 marks] 
 
 \end{enumerate}
+
+{\bf Assessment tasks: submit in LEARN}
+
+Submit your code for measuring a the signal generator output with your ADC.
+Submit a plot showing 100 sampled values from a 10~Hz sinusoidal signal.
+What time did you calculate elapsed between samples?
+\hfill {\bf[3~marks]} \\
+
+What did you calculate was the highest signal frequency you can measure correctly?
+Submit a plot showing your sampling of an input waveform at this frequency.
+Explain what happens when a signal is undersampled.
+Submit a plot with a waveform that is undersampled.
+\hfill {\bf[3~marks]} \\
 
 
 \newpage

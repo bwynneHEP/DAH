@@ -9,6 +9,6 @@ GPIO.setmode(GPIO.BCM)
 LED0 = 24 
 
 # Control the LED
-GPIO.setup(LED0, GPIO.OUT) # Set Pin as output
+GPIO.setup(LED0, GPIO.OUT)   # Set pin as output
 GPIO.output(LED0, GPIO.HIGH) # Turn on the LED
-GPIO.output(LED0, GPIO.LOW) # Turn off the LED
+GPIO.output(LED0, GPIO.LOW)  # Turn off the LED
