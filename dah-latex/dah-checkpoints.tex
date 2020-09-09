@@ -1,16 +1,16 @@
 \chapter{DAH Checkpoints}
 \label{sec:checkpoints}
 \vspace*{-0.99cm}
-{\bf Important note}: Please consult the DAH manual to familiarise yourself with the equipment, including the Raspberry-Pi, LEDs, temperature sensors, ADCs, DACs, I/O, switches, breadboard and connectors.
-The manual contains detailed instructions on how to operate the Raspberry-Pi.
+{\bf Important note}: Please consult the DAH manual to familiarise yourself with the equipment, including the Raspberry Pi, LEDs, temperature sensors, ADCs, DACs, I/O, switches, breadboard and connectors.
+The manual contains detailed instructions on how to operate the Raspberry Pi.
 To copy python code snippets (see below) into your python scripts, download these files from github, see \url{https://github.com/fmuheim/DAH}.
 Data sheets for all electronic elements are available from Dropbox, see: \url{https://www.dropbox.com/sh/gfnisnh4ntnum1d/AAAWtNL_AhcpR8PZ_QmqZpsja?n=112609310}.  
 
 \section{Checkpoint 1: LEDs and Switches}
 
 \begin{enumerate}
-\item [1.1.] Control an LED with the Raspberry-Pi by completing the following steps.
-Connect the Raspberry-Pi to a breadboard using the adapter.
+\item [1.1.] Control an LED with the Raspberry Pi by completing the following steps.
+Connect the Raspberry Pi to a breadboard using the adapter.
 On the breadboard, connect GPIO~24 to an LED with a 1~kOhm resistor in series to ground: this is a ``positive logic'' or ``active high'' circuit, as descibed in the lab manual.
 
 \vspace*{-3mm}
@@ -60,7 +60,7 @@ We will also perform the opposite task, varying the brightness of an LED by conv
 \begin{enumerate}
 
 \item [2.1.] Connect an ADC MCP3208 chip to the Raspberry Pi using the SPI Interface.
-Make sure that all required connections between the MCP3208 and the Raspberry-Pi are made (see lab manual).
+Make sure that all required connections between the MCP3208 and the Raspberry Pi are made (see lab manual).
 Use a multimeter to check that power (VDD) and ground (AGND and DGND) are correctly connected.
 
 Connect a Light Dependent Resistor (LDR) and a 4.7~k$\Omega$ resistor as a voltage divider between 3.3 and 0~V, using an ADC input channel to measure the voltage in the middle.
@@ -72,8 +72,8 @@ You are encouraged to consult the following webpage \url{http://webiopi.trouch.c
 \vspace*{-0.5cm}
 
 \newpage
-\item [2.2.] Leave the ADC in place, but also connect the DAC MCP4922 chip to the Raspberry-Pi.
-Make sure that all required connections between the MCP4922 and the Raspberry-Pi are made (see lab manual).
+\item [2.2.] Leave the ADC in place, but also connect the DAC MCP4922 chip to the Raspberry Pi.
+Make sure that all required connections between the MCP4922 and the Raspberry Pi are made (see lab manual).
 Use a multimeter to check that power (VDD) and ground (AVSS) are correctly connected.
 
 Use python to set a value --- e.g. 1.3~V --- to output VOUTA of the DAC.
@@ -91,7 +91,7 @@ Write the DAC setting and measured ADC values at each step to an output file wit
 
 \end{enumerate}
 
-Do not dismantle your circuit after this checkpoint!
+{\bf NB:} Do not dismantle your circuit after this checkpoint!
 You can re-use most of it for Checkpoint~3.
 
 {\bf Assessment tasks: submit in LEARN}
@@ -110,8 +110,10 @@ Submit your code that controls the LED brightness using the DAC, and monitors th
 Submit your output file.
 \hfill {\bf[4~marks]} \\
 
+
+
 \newpage
-\section{Checkpoint 3:  Generating and Sampling Analogue Signals}
+\section{Checkpoint 3: Sampling Analogue Signals}
 
 \begin{enumerate}
 
@@ -122,13 +124,13 @@ Display the output on the oscilloscope.
 Set the amplitude of the signal such that the waveform can be read by the ADC chip, which can sample between 0~V and VREF = 3.3~V. Set the frequency to 10~Hz.
 
 Connect the output of the signal generator to an ADC input channel.
-Don't connect a signal with a voltage outside the range of the ADC chip, which could destroy it and the Raspberry Pi.
-Use python to read a few measurements from the ADC.
+Don't connect a signal with a voltage outside the range of the ADC chip: this could destroy it (and the Raspberry Pi)!
+Use python to read a few measurements from the ADC, and make sure they behave as you expect.
 
 %\hfill [1 marks]\\
 
 \item [3.2.] Measure the waveform produced by the signal generator by writing a python script that records 100 ADC samples and displays these on a graph of voltage vs time.
-Calculate the (approximate) time between samples by measuring the start and end times of your sampling and dividing the difference by 100.
+Calculate the approximate time between samples by measuring the start and end times of your sampling and dividing the difference by 100.
 You can use the pylab interface for plotting graphs --- example files are available on GitHub.
 Always label plots correctly with title and axes and save these to a file (pdf format).
 
@@ -138,8 +140,8 @@ Always label plots correctly with title and axes and save these to a file (pdf f
 
 %\hfill [2 marks] \\
 
-\item [3.3.] Given the time that you calculated elapses between ADC samples, what is the highest signal frequency that you expect you can measure correctly?
-(You may wish to research signal sampling a little before jumping to your answer.)
+\item [3.3.] Given the time that you calculated elapses between ADC samples, what is the highest input signal frequency that you can expect to measure correctly?
+(You may wish to research signal sampling a little before jumping to your answer...)
 Test input signals at a range of different frequencies to see if the results are as you expect.
 
 %\item[3.4.]	What is the maximum signal frequency with which you can properly record a given repetitive signal?   First, consider which would be the best waveform for this investigation. What is the sampling frequency? Explain what happens when a signal is undersampled. Make a plot with a waveform that is undersampled.   
@@ -163,43 +165,53 @@ What time did you calculate elapsed between samples?
 
 What did you calculate was the highest signal frequency you can measure correctly?
 Submit a plot showing your sampling of an input waveform at this frequency.
-Explain what happens when a signal is undersampled.
-Submit a plot with a waveform that is undersampled.
+Submit a plot showing a waveform that is undersampled, and explain what is happening.
 \hfill {\bf[3~marks]} \\
 
 
 \newpage
-\section{Checkpoint 4: Input/Output I/O and I2C BUS}
+\section{Checkpoint 4: Input/Output and I2C BUS}
 
 \begin{enumerate}
 
 
-\item [4.1.] Input/Output (I/O) Expander chips enable the user to connect many devices having the same or similar functions.  With the Raspberry Pi this can be achieved using the I2C bus. Connect the PCF8574AN chip  (I2C BUS Expander) to the Raspberry-Pi. Make sure that all required connections between the PCF8574AN chip and the Raspberry-Pi are made, see pin-out sheet. Explain how the I/O Expander works and what the SDA, SCL and A0, A1, A2 address lines are. 
-%\hfill [2 marks]\\
+\item [4.1.] Input/Output (I/O) Expander chips enable the user to connect many devices that have the same or similar functions.
+With the Raspberry Pi this can be achieved using the I2C bus.
+Connect the PCF8574AN chip  (I2C BUS Expander) to the Raspberry Pi.
+Make sure that all required connections between the PCF8574AN chip and the Raspberry Pi are made, as shown in the lab manual.
 
-%\item [4.2.] 
 Using negative logic connect an LED to output P0 of the PCF8574AN Expander chip. 
-Write a python script to blink the LED using negative logic, see checkpoint 1 for setting up a while loop.  Why is negative logic necessary? 
+Write a python script to blink the LED, similar to what you did in Checkpoint 1.
 
-You may consult the \webiopi webpage  \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) to find information on the GPIO expander chip.
+You may consult the \webiopi webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) to find information on the GPIO expander chip.
 
-{\bf NB:} The GPIO library used here is different to that used in Checkpoint 1. The RPi.GPIO definitions are not compatible with the \webiopi I/O expander commands. \\
+{\bf NB:} The GPIO library used here is different to that used in Checkpoint 1.
+The RPi.GPIO definitions are not compatible with the \webiopi I/O expander commands. \\
 
 \lstinputlisting{../scripts/checkpoint_4a.py}
-\hfill [3 marks]\\
 
-\item [4.2.] Connect an additional 3 LEDs to outputs P1, P2 and P3 of the PCF8574AN Expander chip. Write a python script which turns the LEDs on and off in a predefined pattern, such as a running light. Consider P0 to P3 as default, but you are encouraged to play with other patterns. 
+\item [4.2.] Connect an additional 3 LEDs to outputs P1, P2 and P3 of the PCF8574AN Expander chip.
+Write a python script which turns the LEDs on and off in a cycle of defined patterns, using the portWrite(value) method to control all four LEDs at the same time.
+Experiment with portWrite and make sure you understand how the value you pass to it affects the LEDs.
 
-\hfill [2 marks]\\
+%\newpage
+%\item [4.3.] Consult the webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) for the GPIO Expander. Use the portWrite(value) method to manipulate all four LEDs at the same time.  Connect a push button switch to pin P4 of the expander chip. Write a python script such that an LED pattern toggles every time the button is pushed.\\
 
-\newpage
-\item [4.3.] Consult the webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) for the GPIO Expander. Use the portWrite(value) method to manipulate all four LEDs at the same time.  Connect a push button switch to pin P4 of the expander chip. Write a python script such that an LED pattern toggles every time the button is pushed.\\
-
-\lstinputlisting{../scripts/checkpoint_4b.py}
-\hfill [3 marks]\\
-
+%\lstinputlisting{../scripts/checkpoint_4b.py}
+%\hfill [3 marks]\\
 
 \end{enumerate}
+
+\newpage
+{\bf Assessment tasks: submit in LEARN}
+
+Explain the purpose of the SDA, SCL and A0, A1, A2 connections to the PCF8574AN chip.
+Why is it necessary to connect the LED to the chip using negative logic, rather than positive (consider the direction of current)?
+\hfill {\bf[3~marks]} \\
+
+Submit the code you use to display patterns with 4 LEDs and the portWrite command.
+Submit photos (or video if possible) of the LEDs changing as your code runs.
+\hfill {\bf[3~marks]} \\
 
 
 
@@ -208,22 +220,21 @@ You may consult the \webiopi webpage  \url{http://webiopi.trouch.com/} ($\righta
 
 \begin{enumerate}
 
-\item [5.1.] We will be using DS18B20 temperature sensors for this checkpoint. Take a look at the datasheet here: http://www.adafruit.com/datasheets/DS18B20.pdf  or download it from the DAH Dropbox.
+\item [5.1.] We will be using DS18B20 temperature sensors for this checkpoint.
+Take a look at the datasheet here: \url{http://www.adafruit.com/datasheets/DS18B20.pdf} or download it from the DAH Dropbox.
 
-Connect a DS182B0 temperature sensor to your Raspberry pi (look at the flat front of the sensor to get it the right way around):
+Connect a DS182B0 temperature sensor to your Raspberry Pi (look at the flat front of the sensor to get it the right way around):
 \begin{center}
     \includegraphics[width=14cm]{figs/DS182B0}
 \end{center}
 
-What is the interface between the DS18B20 temperature sensor and the Raspberry Pi? Explain how it works. 
+%What is the interface between the DS18B20 temperature sensor and the Raspberry Pi? Explain how it works. 
 
-\begin{comment}
-Install the drivers for the sensor on the Raspberry Pi with the following commands:
-    pi@Demonstrator-pi ~ $   sudo modprobe w1-gpio
-    pi@Demonstrator-pi ~ $   sudo modprobe w1-therm
-
-Note that you will need to do this again if you restart the Raspberry Pi.
-\end{comment}
+%Install the drivers for the sensor on the Raspberry Pi with the following commands:
+%    pi@Demonstrator-pi ~ $   sudo modprobe w1-gpio
+%    pi@Demonstrator-pi ~ $   sudo modprobe w1-therm
+%
+%Note that you will need to do this again if you restart the Raspberry Pi.
 
 Locate the sensor output by finding the file that has the serial number of your sensor:
 \begin{verbatim} 
@@ -231,7 +242,6 @@ Locate the sensor output by finding the file that has the serial number of your 
     studentnn@dahpimm /sys/bus/w1/devices $ ls 
     10-00080265b6d6 w1_bus_master1 
 \end{verbatim}
-where n = 1 to 50 and mm = 01 to 22.
 Note that your temperature sensor won't be called 10-00080265b6d6, this is just an example.
 
 Now read the sensor output, i.e. the raw temperature measurement:
@@ -241,55 +251,81 @@ Now read the sensor output, i.e. the raw temperature measurement:
     30 00 4b 46 ff ff 0d 10 29 : crc=29 YES 
     30 00 4b 46 ff ff 0d 10 29 t=23937 
 \end{verbatim}
-    
-This should be interpreted as 23.937 centigrade (degree Celsius). 
+This should be interpreted as $23.937^{\circ}$C.
 
 \newpage
-WebIOPi provides a simple way to access the temperature sensor data in python. It is best to test this by running python in interactive mode first.  
-\begin{verbatim}
-    studentnn@dahpimm ~ $ python3
-\end{verbatim}
+WebIOPi provides a simple way to access the temperature sensor data in python.
 \lstinputlisting{../scripts/checkpoint_5a.py}
-\hfill [2 marks]
+
+Test this method yourself, with a loop taking temperature measurements and displaying them on the screen.
+
+%\hfill [2 marks]
 
 
-\item[5.2.] Measure temperature with the DS18B20 sensor versus time. Choose a sensible time interval. Write a python script to make a graph of 50 temperature measurements versus time. Always label plots correctly with title and axes and save these to a file.
+\item[5.2.] Measure temperature with the DS18B20 sensor versus time.
+Choose a sensible time interval, and note that taking a single temperature measurement is quite slow.
+Write a python script to make a graph of 50 temperature measurements versus time.
+Always label plots correctly with title and axes and save these to a file.
  
-As a second step the graph should update itself as each temperature measurement is made. Write a python script for this purpose.  Once this is working, play with it by touching the temperature sensor with you fingers. Describe what is happening and sketch it in your lab book.
+%As a second step the graph should update itself as each temperature measurement is made.
+%Write a python script for this purpose.
+%Once this is working, play with it by touching the temperature sensor with your fingers.
+%Describe what is happening and sketch it in your lab book.
 
-The following code example shows how to display a plot that updates regularly:\\
-
-\lstinputlisting{../scripts/checkpoint_5b.py}
-\hfill [3 marks]
-
+%The following code example shows how to display a plot that updates regularly: \\
+%\lstinputlisting{../scripts/checkpoint_5b.py}
+%\hfill [3 marks]
 
 
-\item[5.3.]	Add another temperature sensor to your circuit by connecting it in parallel with the existing one. You don't need to make separate connections to the Raspberry Pi: your new sensor can share these with the existing one (Just make sure that you connect it the right way around).
 
-Find its serial number in the w1/devices folder like before. Now ensure that you can read out your two temperature sensors simultaneously in python. You can test this by running python in interactive mode first. 
-Note that your temperature sensors will have different serial numbers.
+\item[5.3.]	Add another temperature sensor to your circuit by connecting it in parallel with the existing one. 
+You don't need to make separate connections to the Raspberry Pi: your new sensor can sit in the same breadboard tracks as the existing one (just make sure that you connect it the right way around).
 
-\begin{verbatim}
-    studentnn@dahpimm  ~ $ python3
-\end{verbatim}
+Find its serial number in the w1/devices folder like before.
+Now ensure that you can read out your two temperature sensors simultaneously in python.
+
+%You can test this by running python in interactive mode first. 
+%Note that your temperature sensors will have different serial numbers.
+%
+%\begin{verbatim}
+%    studentnn@dahpimm  ~ $ python3
+%\end{verbatim}
 \lstinputlisting{../scripts/checkpoint_5c.py}
+%
+%What is the smallest change in temperature that a sensor can report? Explain this with reference to the datasheet, and how the temperature information is encoded.
+%
+%Investigate the accuracy of the sensor readings by looking at the stability of the measurement with time, and by comparing the outputs of your two sensors. You can probably assume that the ambient temperature in the lab is constant, but shielding your sensors from breezes may help.
 
-What is the smallest change in temperature that a sensor can report? Explain this with reference to the datasheet, and how the temperature information is encoded.
+%Modify your graphing code from part 5.2 to make histograms of the temperature measurements of the two sensors. 
 
-Investigate the accuracy of the sensor readings by looking at the stability of the measurement with time, and by comparing the outputs of your two sensors. You can probably assume that the ambient temperature in the lab is constant, but shielding your sensors from breezes may help.
+%You can use the pylab histogram command:\\
+%\lstinputlisting{../scripts/checkpoint_5d.py}
+%Make also a graph of the difference between the temperature of the two sensors. Determine the RMS value of a set of temperature difference measurements between the two sensors. Explain your results. Are these consistent with the datasheet?
 
-Modify your graphing code from part 5.2 to make histograms of the temperature measurements of the two sensors. 
+%\hfill [3 marks]
 
-You can use the pylab histogram command:\\
-\lstinputlisting{../scripts/checkpoint_5d.py}
-Make also a graph of the difference between the temperature of the two sensors. Determine the RMS value of a set of temperature difference measurements between the two sensors. Explain your results. Are these consistent with the datasheet?
-
-\hfill [3 marks]
+Modify your graphing code from part 5.2 to display data from both temperature sensors on a single graph.
 
 
 \end{enumerate}
 
+{\bf Assessment tasks: submit in LEARN}
 
+What is the interface between the DS18B20 temperature sensor and the Raspberry Pi?
+Explain how it works.
+Submit a plot showing the temperature variation when you touch a sensor with your finger, and then release it.
+Explain the shape of the temperature data plot line.
+\hfill {\bf[3~marks]} \\
+
+Submit your code for plotting measurements from two temperature sensors on the same graph.
+What is the smallest change in temperature that a single sensor can report?
+Explain this with reference to the temperature data encoding described on the sensor datasheet.
+How do your two temperature sensors readings compare with each other?
+Is this what you would expect from the datasheet?
+\hfill {\bf[3~marks]} \\
+
+
+\begin{comment}
 \newpage
 \section{Checkpoint 6: Data Handling and Analysis}
 
@@ -347,7 +383,7 @@ Compare your mass measurement with the Particle Data Group (\url{pdg.lbl.gov}) a
 
 \hfill [3 marks]
 
-\begin{comment}
+%\begin{comment}
 
 6.4. Download the file upsilons-mass-pt-xaa.txt from the DAH Dropbox which, in addition to the masses, also contains the transverse momenta pT of the muon- pairs in units of GeV/c in text format. For an explanation of the transverse momentum, see the LHCb paper, referred to above. Write a python script that reads in these data and plot a histogram of the transverse momenta for all events. Plot a 2-dimensional histogram of pT versus mass for all events, choosing 50 bins in pT and 100 bins in mass.
 [Hint (python):]
@@ -355,8 +391,7 @@ Compare your mass measurement with the Particle Data Group (\url{pdg.lbl.gov}) a
 12
 [1 mark]
 
-\end{comment}
-
-
+%\end{comment}
 
 \end{enumerate}
+\end{comment}
