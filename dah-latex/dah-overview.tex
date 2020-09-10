@@ -3,7 +3,7 @@
 
 \section{Introduction}
 
-Data Acquisition and Handling (DAH) is a Senior Honours course, which was introduced in 2014 during a review of whole degree programme.
+Data Acquisition and Handling (DAH) is a Senior Honours course, which was introduced in 2014 during a review of the whole degree programme.
 DAH will introduce you to methods and tools of modern Data Acquisition and Handling, including analogue and digital electronics, reading out sensors (detectors), handling and interpreting data.
 This course replaces JH Electronics Methods.
 Note that some parts of Electronics Methods (digital and analogue electronics) are now taught in 2nd year Practical Physics.
@@ -21,6 +21,9 @@ and finishes at the end of week 6 (Thursday 29 October 2020).
 The laboratory sessions will take place on Tuesday and Thursday afternoons from 14:00 to 17:00 --- you need to attend one of these sessions per week.
 Timetabling will automatically allocate one of the afternoons for you.
 The laboratory sessions will be held in JCMB 3201, 3301, 3307 and 3208.
+Please go to your allocated room, and use the same bench space throughout the course.
+On the course Learn page you will find Risk Assessment information regarding use of the labs: please read this and use the electronic form to indicate that you have done so.
+
 Those unable to attend laboratory sessions in person can arrange remote access, working with a partner inside the lab.
 Please email the course administrator to organise this.
 %\begin{itemize}
@@ -32,7 +35,7 @@ Please email the course administrator to organise this.
 %\item weeks 2 to 11:  Tuesday or Thursday 2 to 5 pm, JCMB room 3301: \\laboratory work.
 %\end{itemize}
 
-After all laboratory work is finished there will be a data-analysis project that can be performed outside of the laboratory.
+After all laboratory work is finished (week 7 onwards) there will be a data-analysis project that will be performed outside of the laboratory.
 
 \newpage
 \section{Syllabus}
@@ -66,7 +69,7 @@ On completion of this course, the student will be able to:
 
 The laboratory sessions of the DAH course will take place in JCMB 3301 (and nearby rooms) on Tuesday and Thursday afternoons from 14:00 to 17:00.% (15:00 - 17:00 in week 1).
 You will need to attend one of these sessions.
-Timetabling will automatically allocate either Tuesday or Thursday for you.
+Timetabling will automatically allocate either Tuesday or Thursday for you, and a room number.
 %In the laboratory you will work in pairs, so you will need to choose a partner.
 
 %The laboratory work consists of checkpoints and projects, which are described in detail in Chapters~\ref{sec:checkpoints} and~\ref{sec:projects}.
@@ -79,7 +82,7 @@ Example Python scripts and code snippets will be provided in this document and o
 During weeks 1 to 6 of the DAH course you will need to complete five checkpoints. %six checkpoints.
 In each checkpoint you will learn a specific aspect of data acquisition or data handling and complete a prescribed set of tasks.
 %You will work in pairs during the checkpoints.
-%Each pair will have their own set of kit, however the Raspberry-Pi's will be shared between the Tuesday and Thursday afternoon sessions.
+%Each pair will have their own set of kit, however the Raspberry Pi's will be shared between the Tuesday and Thursday afternoon sessions.
 Every student will have their own set of kit, however the Raspberry Pi's will be shared between the Tuesday and Thursday afternoon sessions.
 %Each pair will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
 Each student will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
@@ -88,13 +91,18 @@ The boxes should be labelled with your name.
 You should maintain a clear record of your work in a laboratory notebook as you work through the checkpoints.
 This must include diagrams of the circuits used.
 Python code written on the Raspberry Pi must include explanatory comments. %, and at each check point you need to demonstrate that your code compiles and runs correctly.
-%Each partner will need to maintain their own notebook to demonstrate that a checkpoint has been completed. 
+%Each partner will need to maintain their own notebook to demonstrate that a checkpoint has been completed.
+
+For all checkpoints you will either work individually in the lab, or as part of a pair with one student in the lab and one accessing remotely.
+If you are working in pairs you will naturally share results and Python code but you should each provide a separate submission in Learn for the checkpoints, answering any questions independently.
+Ensure that you have all data and other results (e.g. photographs of equipment) prepared before you leave the lab.
 
 \section{Projects}
 
 In weeks 7 to 11 of the DAH course you will carry out a project. %during the laboratory sessions. You will continue to attend during the same afternoon as for the checkpoints.
 The projects will build upon what you have learned during the checkpoints, but you will also encounter new material.
-While the checkpoints concentrated on specific data acquisition techniques and data handling methods the projects will allow you to progress towards building a small data analysis system. %DAQ and/or data analysis system.
+%While the checkpoints concentrated on specific data acquisition techniques and data handling methods the projects will allow you to progress towards building a small DAQ and/or data analysis system.
+While the checkpoints had you collect and analyse small datasets with equipment in the laboratory, for the project you will perform more complex analysis of a large, pre-recorded dataset produced by the LHCb experiment at CERN.
 The projects will have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 You will be able to choose from a list of projects. %, but due to the availability of equipment, the number of spaces for each project will be limited.
 %A signup sheet will be provided.
@@ -103,17 +111,17 @@ You will be able to choose from a list of projects. %, but due to the availabili
 %Some of the parts, including Arduinos and loudspeakers, as well as the Raspberry Pi's, will be shared between Tuesday and Thursday afternoon sessions.
 %In addition, each pair will continue to use the yellow box in which you can preserve your work for use in the following week. 
 
-For the DAH project you will work in pairs.
-Throughout the project, each of you should maintain a clear record of your work in your notebook.
+%For the DAH project you will work in pairs.
+Throughout the project, you should maintain a clear record of your work in your notebook.
 %As an example, diagrams of built circuits must be included.
 Python code must include explanatory comments.
-Each partner will be required to submit an individual report for the project, but are expected to share code and results.
+You will be required to submit a written report for the project, along with your code and results.
 
 \newpage
 \section{Assessment} 
 
 Data Acquisition and Handling is a continuously assessed course.
-The overall DAH  assessment will be made from three parts.
+The overall DAH assessment has three parts.
 The sum of the marks achieved while carrying out the checkpoints will count for 30\% of the total course mark.
 The marks obtained for the DAH project will count for 60\% of the total course mark.
 In addition, there will be a quiz/hand-in which will count for 10\% of the total course mark.
@@ -121,14 +129,15 @@ In addition, there will be a quiz/hand-in which will count for 10\% of the total
 \subsection{Assessment of checkpoints}
 
 %There are six checkpoints and checkpoints 2 to 6 will be assessed by one of the demonstrators during the laboratory hours. 
-There are five checkpoints, and checkpoints 2 to 5 will be assessed by submission in LEARN.
+There are five checkpoints, and checkpoints 2 to 5 will be assessed by submission in Learn.
 %The assessment will be performed when you decide that you have completed the tasks for a checkpoint or parts thereof as allowed by the marking scheme. For each checkpoint a total score of between 8 and 10 marks will be awarded.  In total up to 45 marks will be available for the checkpoints.
 Chapter~\ref{sec:checkpoints} explains what you are expected to submit, and how many marks are available for each section.
 
 Please note the following:
 \begin{itemize}
-\item While working in pairs, each student will be assessed separately. The marks awarded need not to be the same for both students. 
+\item In the case that a remote student is paired with a student in the lab, each student will be assessed separately. The marks awarded need not to be the same for both students. 
 \item A marking scheme will be provided. Some of the tasks of each checkpoint may be marked together.
+\item Be sure to check what is required for submission before you leave the lab.
 %\item You will only be awarded marks if you can demonstrate that the relevant circuit functions correctly and that your python code achieves the requested results. 
 %\item You will be assessed on your (individual) laboratory notebook and the structure and readability of your (joint) python code.
 \item You will be required to answer the questions given in the checkpoints. These questions may require research beyond the materials provided.
@@ -154,19 +163,19 @@ It is expected that the report is typed.
 Most students use LaTeX or Word, either is fine.
 
 When planning and writing a report, you need to be selective about what to include in your report: it should be a concise technical document.
-However, it also needs to contain all the information required for the reader to understand what was achieved, i.e. with your report you need to be able to demonstrate to what extend the project was carried out successfully.
+However, it also needs to contain all the information required for the reader to understand what was achieved, i.e. with your report you need to be able to demonstrate to what extent the project was carried out successfully.
 %It is often useful to include circuit diagrams, pictures of the setup, or plots of measurements.
 A good report would allow a fellow student to be able to reproduce your work.
 Students are advised to start writing their report as the project progresses.
 Experience shows that report writing always takes longer than you expect!
 
-When working with a partner, the report must make it clear which parts of the project were carried out together, which parts are only your work, and which parts were only carried out by your partner.
-Each partner is required to submit an individual report for the project.
-The report must contain a signed declaration, which will be available on Learn.
+%When working with a partner, the report must make it clear which parts of the project were carried out together, which parts are only your work, and which parts were only carried out by your partner.
+Each student is required to submit an individual report for the project.
+The report must contain a signed ``Own Work Declaration,'' which will be available on Learn.
 
 \subsubsection{Programming Code}
 
-Programming code for the DAH project, using Python, written on the Raspberry-Pi or on another computer, must include explanatory comments.
+Programming code for the DAH project, using Python, written on the Raspberry Pi or on another computer, must include explanatory comments.
 When reading a (Python) script, a reader should easily be able to understand what the script will do.
 All code written (in Python or another programming language) for the DAH project will need to be submitted using the "Assessment" tool on Learn.
 The files should be bundled up in a .zip or .tar file.
@@ -176,7 +185,7 @@ Submission details will be provided.
 \subsubsection{Supplementary Material}
 
 You are encouraged to submit supplementary material if you consider the material as a part of the project that does not fit into the report format. 
-This could include your laboratory notebook, output files produced by running a python script, short videos that demonstrate how your project works, etc.
+This could include your laboratory notebook, output files produced by running a python script, etc.
 These can be submitted using the "Assessment" tool on Learn, or as a link to a webpage or other online resource (e.g. Dropbox).
 If you have questions about the suitability of material, please consult with the Course Organiser.
 All such supplementary material must be clearly listed in an appendix to the report and referred to in the main text. 
@@ -186,7 +195,7 @@ All such supplementary material must be clearly listed in an appendix to the rep
 
 The assessed material for the DAH projects will need to be submitted by {\bf 12.00 NOON on Friday, 4th December 2020}. By the deadline you must have submitted 
 \begin{itemize}
-\item an electronic version of your project report to Turnitin via Learn. At the beginning of your submission you will need to declare an "Own Work Declaration"
+\item an electronic version of your project report to Turnitin via Learn. At the beginning of your submission you will need to include an ``Own Work Declaration''
 \item supplementary material via Learn. %If required (usually not the case), you can submit supplementary material to the Teaching Office in JCMB (Room 4309)
 %\item and any supplementary material. 
 \end{itemize}
@@ -199,7 +208,7 @@ Students who, for good reason, find they are unable to meet the deadline, should
 Towards the end of the checkpoints, you will be need to submit a quiz/hand-in on questions about data acquisition and handling material.
 You will be given two weeks to solve these questions on your own time, i.e. you should not use laboratory hours to solve the quiz questions.
 %The exact deadline for handing in the quiz will be announced on Learn, it will be around the end of week 7 of the semester. 
-The quiz will count for 10\% of the total course mark. 
+The quiz will count for 10\% of the total course mark, and should be submitted by {\bf 12.00 NOON on Friday, 20th November 2020}.
 
 \section{Plagiarism}
 

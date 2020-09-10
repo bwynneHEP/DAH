@@ -66,7 +66,7 @@ Use a multimeter to check that power (VDD) and ground (AGND and DGND) are correc
 Connect a Light Dependent Resistor (LDR) and a 4.7~k$\Omega$ resistor as a voltage divider between 3.3 and 0~V, using an ADC input channel to measure the voltage in the middle.
 Use python to read the voltages of all eight ADC channels.
 Try reading a specific ADC channel, and experiment with all the other methods given below.
-You are encouraged to consult the following webpage \url{http://webiopi.trouch.com/}($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Analogue).
+You are encouraged to consult the following webpage \url{http://webiopi.trouch.com/}($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Analog).
 
 \lstinputlisting{../scripts/checkpoint_2a.py}
 \vspace*{-0.5cm}
@@ -94,22 +94,31 @@ Write the DAC setting and measured ADC values at each step to an output file wit
 {\bf NB:} Do not dismantle your circuit after this checkpoint!
 You can re-use most of it for Checkpoint~3.
 
-{\bf Assessment tasks: submit in LEARN}
+\newpage
+{\bf Assessment tasks: submit in Learn}
 
-Explain what all connections to the ADC chip are for (do not simply copy information from the datasheet --- explain the practical purpose of these connections).
-Explain the meaning of the return values of each python method for the ADC.
-What is the primary (most fundamental) ADC output and how is the final voltage output calculated from this?
-Explain how the ADC readings change when you cover the LDR with your hand.
-\hfill {\bf[4~marks]} \\
+\begin{itemize}
 
-Explain what all the connections to the DAC chip are for.
-Show a photograph of your multimeter measuring (approximately) 1.3~V output from the DAC
-\hfill {\bf[2~marks]} \\
+\item Submit a document with the following information:
+\begin{enumerate}
+\item Explain what all connections to the ADC chip are for (do not simply copy information from the datasheet --- explain the practical purpose of these connections).
+\item Explain the meaning of the return values of each Python method for the ADC.
+\item What is the primary (most fundamental) ADC output and how is the final voltage output calculated from this?
+\item Explain how the ADC readings change when you cover the LDR with your hand --- you may need to provide a circuit diagram.
+\item Explain what all the connections to the DAC chip are for.
+\end{enumerate}
+\hfill {\bf[5~marks]}
 
-Submit your code that controls the LED brightness using the DAC, and monitors the effect on the LDR using the ADC.
-Submit your output file.
-\hfill {\bf[4~marks]} \\
+\item Submit a photograph of your multimeter measuring (approximately) 1.3~V output from the DAC.
+\hfill {\bf[2~marks]}
 
+\item Submit your code that controls the LED brightness using the DAC, and monitors the effect on the LDR using the ADC.
+\hfill {\bf[2~marks]}
+
+\item Submit your output file.
+\hfill {\bf[1~mark]}
+
+\end{itemize}
 
 
 \newpage
@@ -156,18 +165,25 @@ Test input signals at a range of different frequencies to see if the results are
 
 \end{enumerate}
 
-{\bf Assessment tasks: submit in LEARN}
+{\bf Assessment tasks: submit in Learn}
 
-Submit your code for measuring a the signal generator output with your ADC.
-Submit a plot showing 100 sampled values from a 10~Hz sinusoidal signal.
-What time did you calculate elapsed between samples?
-\hfill {\bf[3~marks]} \\
+\begin{itemize}
 
-What did you calculate was the highest signal frequency you can measure correctly?
-Submit a plot showing your sampling of an input waveform at this frequency.
-Submit a plot showing a waveform that is undersampled, and explain what is happening.
-\hfill {\bf[3~marks]} \\
+\item Submit your code for measuring the signal generator output with your ADC.
+\hfill {\bf[2~marks]}
 
+\item Submit a plot showing 100 sampled values from a 10~Hz sinusoidal signal.
+\hfill {\bf[1~mark]}
+
+\item Submit a document with the following information:
+\begin{enumerate}
+\item What time did you calculate elapsed between samples?
+\item What did you calculate was the highest signal frequency you can measure correctly (and why)? Provide a plot showing your sampling of an input waveform at this frequency.
+\item Explain what happens when a waveform is undersampled, and provide a plot that shows what you describe.
+\end{enumerate}
+\hfill {\bf[3~marks]}
+
+\end{itemize}
 
 \newpage
 \section{Checkpoint 4: Input/Output and I2C BUS}
@@ -203,16 +219,26 @@ Experiment with portWrite and make sure you understand how the value you pass to
 \end{enumerate}
 
 \newpage
-{\bf Assessment tasks: submit in LEARN}
+{\bf Assessment tasks: submit in Learn}
 
-Explain the purpose of the SDA, SCL and A0, A1, A2 connections to the PCF8574AN chip.
-Why is it necessary to connect the LED to the chip using negative logic, rather than positive (consider the direction of current)?
-\hfill {\bf[3~marks]} \\
+\begin{itemize}
 
-Submit the code you use to display patterns with 4 LEDs and the portWrite command.
-Submit photos (or video if possible) of the LEDs changing as your code runs.
-\hfill {\bf[3~marks]} \\
+\item Submit a document with the following information:
+\begin{enumerate}
+\item Explain the purpose of the SDA, SCL and A0, A1, A2 connections to the PCF8574AN chip.
+\item If you were to connect the A0 pin to +3.3~V instead of ground, how would you modify your code?
+\item Why is it necessary to connect the LED to the chip using negative logic, rather than positive (consider the direction of current)?
+\end{enumerate}
+\hfill {\bf[3~marks]}
 
+\item Submit your code where you use the portWrite command to display multiple different patterns with four LEDs.
+Ensure that the code comments explain how your inputs to portWrite create a particular pattern.
+\hfill {\bf[2~marks]}
+
+\item Submit photos (or video if possible) of the LEDs changing as your code runs.
+\hfill {\bf[1~mark]}
+
+\end{itemize}
 
 
 \newpage
@@ -309,89 +335,27 @@ Modify your graphing code from part 5.2 to display data from both temperature se
 
 \end{enumerate}
 
-{\bf Assessment tasks: submit in LEARN}
-
-What is the interface between the DS18B20 temperature sensor and the Raspberry Pi?
-Explain how it works.
-Submit a plot showing the temperature variation when you touch a sensor with your finger, and then release it.
-Explain the shape of the temperature data plot line.
-\hfill {\bf[3~marks]} \\
-
-Submit your code for plotting measurements from two temperature sensors on the same graph.
-What is the smallest change in temperature that a single sensor can report?
-Explain this with reference to the temperature data encoding described on the sensor datasheet.
-How do your two temperature sensors readings compare with each other?
-Is this what you would expect from the datasheet?
-\hfill {\bf[3~marks]} \\
-
-
-\begin{comment}
 \newpage
-\section{Checkpoint 6: Data Handling and Analysis}
+{\bf Assessment tasks: submit in Learn}
 
+\begin{itemize}
+
+\item Submit a document with the following information:
 \begin{enumerate}
-
-\item [6.1.] This is a data handling exercise and the Raspberry Pi is not required.
-Thus this checkpoint is best carried out using the Physics CPlab computers. 
-There is a CPlab computer available on every desk in the DAH laboratory.
-You can use the following python libraries. \\
-
-\lstinputlisting{../scripts/checkpoint_6a.py}
-
-The LHCb experiment at the Large Hadron Collider at CERN has recorded a sample of muon pairs with invariant masses in the range of 8.5 to 11 GeV/$c^2$. Three clear peaks are observed in this mass spectrum. These correspond to the production of Upsilon mesons, which are bound states of a $b$ and a anti-$b$ quark. These states are known as the $\Upsilon \rm (1S)$, $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ mesons where the $\Upsilon \rm (1S)$ meson is the ground state and the $\Upsilon \rm (2S)$  and $\Upsilon \rm (3S)$  states are radial excitations (for LHCb paper, see {DOI: 10.1007/JHEP06(2013)064).}
-
-\begin{center}
-    \includegraphics[width=9cm]{figs/mu-pair-mass}
-\end{center}
-
-Download the file upsilons-mass-xaa.txt from the DAH Dropbox, which contains the invariant masses of a large number of muon pairs in units of GeV/$c^2$ in text format. Write a python script that reads the data from this file and plots a histogram of all the masses, choosing a reasonable bin width. Always label plots correctly with title and axes and save these to a file.
-[Hint: The bin width should be chosen such that each of the three peaks is clearly resolved and represented by a sufficient number of bins for analysis.]
-
-\hfill [2 marks]
-
-
-\item [6.2.] Determine the masses of the three particles by determining the bins with the highest number of entries in the peak regions. Divide the histogram into three peak regions and write a local peak finding method for this part.
-What are the mass differences between the $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ states with respect to the $\Upsilon \rm (1S)$ meson? %By inspecting visually the muon-pair mass
-%spectrum, determine the Full Width Half Maximum (FWHM) of the $\Upsilon \rm (1S)$ mass peak.
-
-\hfill [2 marks]
-
-
-\item [6.3.] Determine the mass of the  $\Upsilon \rm (1S)$  meson and its statistical uncertainty. This can be achieved by several methods. First  by looking at the mass spectrum, choose a suitable region around the $\Upsilon \rm (1S)$  mass peak. Calculate the mean, the unbiased variance and standard deviation for the events in this region. Use these values to determine the standard deviation of the mean. Comment on possible biases for this method. 
-
-
-The mass peaks corresponding to the three $\Upsilon$ mesons can be described 
-reasonably well by a Gaussian function, 
-$f(x) = \frac{N}{\sigma \sqrt{2\pi}}  \exp{\left( - \frac{(x-/\mu)^2}{2\sigma^2} \right)} $
-where $x$ is the invariant mass of the muon pairs, $\mu$ is the mass of the $\Upsilon \rm (1S)$  meson, $\sigma$ is the Gaussian width (mass resolution) and $N$ is the total number of signal events. 
-By inspecting visually the muon-pair mass
-spectrum, determine the Full Width Half Maximum (FWHM) of the $\Upsilon \rm (1S)$ mass peak.
-Assuming a Gaussian signal shape estimate the mass resolution $\sigma$ from the FWHM. %of the $\Upsilon \rm (1S)$  peak. 
-Compare this result for the mass resolution of the $\Upsilon \rm (1S)$  peak with the standard deviation in the signal region determined above and comment.
-
-\hfill [3 marks]\\
-
-
-In the muon-pair mass spectrum define a signal region of width $\pm 150\; {\rm MeV}/c^2$ around the $\Upsilon \rm (1S)$  peak position and determine the number of events $N$ in this region. 
-Define an upper and lower sideband region where there are only background events. These sidebands should each be half as wide as the signal region and located at masses equidistant from the $\Upsilon \rm (1S)$  peak position. Assuming that the background is falling linearly with the muon-pair mass, determine the number of background events $B$ in the signal region (below the $\Upsilon \rm (1S)$  mass peak). Perform either a linear least squares fit in the sideband regions or use the sideband subtraction method for this. Determine the number of signal events $S$ in the signal region.
-
-Alternatively, if you know how to perform a fit you may choose fitting the $\Upsilon \rm (1S)$   peak in the mass spectrum for this part.
-
-% Assuming Gaussian statistics for N and using the mass resolution ? determine the statistical error %on the mass of the ?(1S) meson. 
-Compare your mass measurement with the Particle Data Group (\url{pdg.lbl.gov}) and comment.
-[Hint: The PDG lists the properties of particles. Select "pdgLive - Interactive Listings" followed by "Mesons b anti-b" to find the $\Upsilon \rm (1S)$  meson.]
-
-\hfill [3 marks]
-
-%\begin{comment}
-
-6.4. Download the file upsilons-mass-pt-xaa.txt from the DAH Dropbox which, in addition to the masses, also contains the transverse momenta pT of the muon- pairs in units of GeV/c in text format. For an explanation of the transverse momentum, see the LHCb paper, referred to above. Write a python script that reads in these data and plot a histogram of the transverse momenta for all events. Plot a 2-dimensional histogram of pT versus mass for all events, choosing 50 bins in pT and 100 bins in mass.
-[Hint (python):]
-%# Splitting a line with two strings separated by a blank space line = line.split()
-12
-[1 mark]
-
-%\end{comment}
-
+\item What is the interface between the DS18B20 temperature sensor and the Raspberry Pi?
+Explain how it works.
+\item What is the smallest change in temperature that a single sensor can report?
+Explain this with reference to the temperature data encoding described on the sensor datasheet.
+\item How do your two temperature sensors' readings compare with each other?
+Is this what you would expect from the datasheet?
 \end{enumerate}
-\end{comment}
+\hfill {\bf[3~marks]}
+
+\item Submit a plot showing the temperature variation when you touch a sensor with your finger, and then release it.
+Annotate the plot, or provide a caption, to explain the shape of the temperature trend line.
+\hfill {\bf[1~mark]}
+
+\item Submit your code for plotting measurements from two temperature sensors on the same graph.
+\hfill {\bf[2~marks]}
+
+\end{itemize}
