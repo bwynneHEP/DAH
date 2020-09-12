@@ -273,7 +273,7 @@ Note that your temperature sensor won't be called 10-00080265b6d6, this is just 
 Now read the sensor output, i.e. the raw temperature measurement:
 \begin{verbatim}
     studentnn@dahpimm /sys/bus/w1/devices ~ $ cd 10-00080265b6d6
-    studentnn@dahpimm /sys/bus/w1/devices/10-00080265b6d6 $ cat w1_slave 
+    studentnn@dahpimm /sys/bus/w1/devices/10-00080265b6d6 $ cat w1_*
     30 00 4b 46 ff ff 0d 10 29 : crc=29 YES 
     30 00 4b 46 ff ff 0d 10 29 t=23937 
 \end{verbatim}

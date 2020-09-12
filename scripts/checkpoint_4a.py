@@ -6,7 +6,7 @@ from webiopi.devices.digital.pcf8574 import PCF8574A
 GPIO = webiopi.GPIO
 
 # Setup chip
-mcp = PCF8574A(slave=0x38)
+mcp = PCF8574A(0x38)
 
 # Set which PCF8574 GPIO pin is connected to the LED
 LED0 = 0
