@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 # "BCM" refers to the Broadcom processor
 GPIO.setmode(GPIO.BCM)
 
-# Define the pin number for the LED
+# A variable to store the pin number for the LED
 LED0 = 24 
 
 # Control the LED

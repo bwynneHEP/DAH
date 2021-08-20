@@ -3,7 +3,7 @@
 \vspace*{-0.99cm}
 {\bf Important note}: Please consult the DAH manual to familiarise yourself with the equipment, including the Raspberry Pi, LEDs, temperature sensors, ADCs, DACs, I/O, switches, breadboard and connectors.
 The manual contains detailed instructions on how to operate the Raspberry Pi.
-To copy python code snippets (see below) into your python scripts, download these files from github, see \url{https://github.com/fmuheim/DAH}.
+To copy Python code snippets (see below) into your Python scripts, download these files from github, see \url{https://github.com/bwynneHEP/DAH}.
 Data sheets for all electronic elements are available from Dropbox, see: \url{https://www.dropbox.com/sh/gfnisnh4ntnum1d/AAAWtNL_AhcpR8PZ_QmqZpsja?n=112609310}.  
 
 \section{Checkpoint 1: LEDs and Switches}
@@ -26,7 +26,7 @@ Repeat the exercise with negative logic (active low) by connecting the LED with 
 Draw a schematic diagram for this circuit like the example above.
  
 
-\item [1.2.] Modify the first python script to blink the LED continuously.
+\item [1.2.] Modify the first Python script to blink the LED continuously.
 You can do this by adding a while loop. \\
 
 \lstinputlisting{../scripts/checkpoint_1b.py}
@@ -36,7 +36,7 @@ Since this code will keep running forever, you'll need to press CTRL+C to stop i
 
 \item [1.3.] Using positive logic (active high) connect a push-button switch between 3.3V and GPIO23 and, with a 1~kOhm resistor in series, to ground.
 See the diagram in your lab manual for more information.
-Modify your python script to toggle the LED state every time the push button switch is pushed. \\
+Modify your Python script to toggle the LED state every time the push button switch is pushed. \\
 
 \lstinputlisting{../scripts/checkpoint_1c.py}
 
@@ -64,9 +64,10 @@ Make sure that all required connections between the MCP3208 and the Raspberry Pi
 Use a multimeter to check that power (VDD) and ground (AGND and DGND) are correctly connected.
 
 Connect a Light Dependent Resistor (LDR) and a 4.7~k$\Omega$ resistor as a voltage divider between 3.3 and 0~V, using an ADC input channel to measure the voltage in the middle.
-Use python to read the voltages of all eight ADC channels.
+Use Python to read the voltages of all eight ADC channels.
 Try reading a specific ADC channel, and experiment with all the other methods given below.
-You are encouraged to consult the following webpage \url{http://webiopi.trouch.com/}($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Analog).
+%You are encouraged to consult the following webpage \url{http://webiopi.trouch.com/}($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Analog).
+Remember the built-in Python method \texttt{help( someCode )} which can give you information about the code.
 
 \lstinputlisting{../scripts/checkpoint_2a.py}
 \vspace*{-0.5cm}
@@ -74,16 +75,16 @@ You are encouraged to consult the following webpage \url{http://webiopi.trouch.c
 \newpage
 \item [2.2.] Leave the ADC in place, but also connect the DAC MCP4922 chip to the Raspberry Pi.
 Make sure that all required connections between the MCP4922 and the Raspberry Pi are made (see lab manual).
-Use a multimeter to check that power (VDD) and ground (AVSS) are correctly connected.
+Use a multimeter to check that power (VDD) and ground (VSS) are correctly connected.
 
-Use python to set a value --- e.g. 1.3~V --- to output VOUTA of the DAC.
+Use Python to set a value --- e.g. 1.3~V --- to output VOUTA of the DAC.
 Measure this voltage with a multimeter. \\
 
 \lstinputlisting{../scripts/checkpoint_2b.py}
 %\vspace*{-0.5cm}
 
 \item [2.3.] Connect one output of the DAC to an LED.
-Write a python script that varies the brightness of the LED by setting a series of different values for the output voltage of the DAC.
+Write a Python script that varies the brightness of the LED by setting a series of different values for the output voltage of the DAC.
 Now arrange the circuit so that the LED is next to the LDR, and the change in brightness can be measured.
 The laboratory is quite bright relative to an LED, so you might need to cover the breadboard to show a convincing change.
 Modify your script to read the ADC input each time you set the DAC output.
@@ -102,9 +103,9 @@ You can re-use most of it for Checkpoint~3.
 \item Submit a document with the following information:
 \begin{enumerate}
 \item Explain what all connections to the ADC chip are for (do not simply copy information from the datasheet --- explain the practical purpose of these connections).
-\item Explain the meaning of the return values of each Python method for the ADC.
-\item What is the primary (most fundamental) ADC output and how is the final voltage output calculated from this?
-\item Explain how the ADC readings change when you cover the LDR with your hand --- you may need to provide a circuit diagram.
+\item Explain the meaning of the return values of each Python method for the ADC (again, don't just copy from elsewhere, explain in your own words).
+\item What is the primary (most direct) ADC output and how is the final voltage output calculated from this?
+\item Explain how the ADC readings change when you cover the LDR with your hand. Provide a circuit diagram.
 \item Explain what all the connections to the DAC chip are for.
 \end{enumerate}
 \hfill {\bf[5~marks]}
@@ -134,18 +135,18 @@ Set the amplitude of the signal such that the waveform can be read by the ADC ch
 
 Connect the output of the signal generator to an ADC input channel.
 Don't connect a signal with a voltage outside the range of the ADC chip: this could destroy it (and the Raspberry Pi)!
-Use python to read a few measurements from the ADC, and make sure they behave as you expect.
+Use Python to read a few measurements from the ADC, and make sure they behave as you expect.
 
 %\hfill [1 marks]\\
 
-\item [3.2.] Measure the waveform produced by the signal generator by writing a python script that records 100 ADC samples and displays these on a graph of voltage vs time.
+\item [3.2.] Measure the waveform produced by the signal generator by writing a Python script that records 100 ADC samples and displays these on a graph of voltage vs time.
 Calculate the approximate time between samples by measuring the start and end times of your sampling and dividing the difference by 100.
 You can use the pylab interface for plotting graphs --- example files are available on GitHub.
 Always label plots correctly with title and axes and save these to a file (pdf format).
 
 %\hfill [2 marks] \\
 
-%\item [3.3.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.   First connect the signal from the signal generator to the oscilloscope. Read the input voltage for the high and low sections of the square waveform off the oscilloscope screen. For this use the trigger threshold dial to determine these voltage levels as precisely as possible. Then connect the signal to an ADC input channel. Write a python script that takes 100 ADC samples and writes these into a file, then expand the script to determine the average ADC voltages for the high and low sections of the square waveform and record the results. Reduce the amplitude of the input waveform by a factor of two and repeat above procedure. Plot the four calibration measurements, i.e. the measured ADC voltages (from the two sets of measurements of the  high and low sections) versus the four input voltages (measured with the oscilloscope) on a graph and comment.
+%\item [3.3.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.   First connect the signal from the signal generator to the oscilloscope. Read the input voltage for the high and low sections of the square waveform off the oscilloscope screen. For this use the trigger threshold dial to determine these voltage levels as precisely as possible. Then connect the signal to an ADC input channel. Write a Python script that takes 100 ADC samples and writes these into a file, then expand the script to determine the average ADC voltages for the high and low sections of the square waveform and record the results. Reduce the amplitude of the input waveform by a factor of two and repeat above procedure. Plot the four calibration measurements, i.e. the measured ADC voltages (from the two sets of measurements of the  high and low sections) versus the four input voltages (measured with the oscilloscope) on a graph and comment.
 
 %\hfill [2 marks] \\
 
@@ -157,9 +158,9 @@ Test input signals at a range of different frequencies to see if the results are
 
 %\hfill [2 marks] \\
 
-%\item [3.5.] Connect a DAC chip (MCP4922) to the Raspberry Pi, as in Checkpoint 2.  Using a python script, generate a sinusoidal waveform on the DAC output and plot the waveform to a graph.
+%\item [3.5.] Connect a DAC chip (MCP4922) to the Raspberry Pi, as in Checkpoint 2.  Using a Python script, generate a sinusoidal waveform on the DAC output and plot the waveform to a graph.
 
-%Use the ADC chip (MCP3208) to digitise the waveform generated by the DAC. Write a python script that takes 100 DAC samples and 100 ADC measurements and plot these on the same graph. Take into account the limitations encountered in 3.4.                                                          
+%Use the ADC chip (MCP3208) to digitise the waveform generated by the DAC. Write a Python script that takes 100 DAC samples and 100 ADC measurements and plot these on the same graph. Take into account the limitations encountered in 3.4.                                                          
  
 %\hfill [3 marks] 
 
@@ -197,7 +198,7 @@ Connect the PCF8574AN chip  (I2C BUS Expander) to the Raspberry Pi.
 Make sure that all required connections between the PCF8574AN chip and the Raspberry Pi are made, as shown in the lab manual.
 
 Using negative logic connect an LED to output P0 of the PCF8574AN Expander chip. 
-Write a python script to blink the LED, similar to what you did in Checkpoint 1.
+Write a Python script to blink the LED, similar to what you did in Checkpoint 1.
 
 You may consult the \webiopi webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) to find information on the GPIO expander chip.
 
@@ -207,11 +208,11 @@ The RPi.GPIO definitions are not compatible with the \webiopi I/O expander comma
 \lstinputlisting{../scripts/checkpoint_4a.py}
 
 \item [4.2.] Connect an additional 3 LEDs to outputs P1, P2 and P3 of the PCF8574AN Expander chip.
-Write a python script which turns the LEDs on and off in a cycle of defined patterns, using the portWrite(value) method to control all four LEDs at the same time.
+Write a Python script which turns the LEDs on and off in a cycle of defined patterns, using the portWrite(value) method to control all four LEDs at the same time.
 Experiment with portWrite and make sure you understand how the value you pass to it affects the LEDs.
 
 %\newpage
-%\item [4.3.] Consult the webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) for the GPIO Expander. Use the portWrite(value) method to manipulate all four LEDs at the same time.  Connect a push button switch to pin P4 of the expander chip. Write a python script such that an LED pattern toggles every time the button is pushed.\\
+%\item [4.3.] Consult the webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) for the GPIO Expander. Use the portWrite(value) method to manipulate all four LEDs at the same time.  Connect a push button switch to pin P4 of the expander chip. Write a Python script such that an LED pattern toggles every time the button is pushed.\\
 
 %\lstinputlisting{../scripts/checkpoint_4b.py}
 %\hfill [3 marks]\\
@@ -280,7 +281,7 @@ Now read the sensor output, i.e. the raw temperature measurement:
 This should be interpreted as $23.937^{\circ}$C.
 
 \newpage
-WebIOPi provides a simple way to access the temperature sensor data in python.
+WebIOPi provides a simple way to access the temperature sensor data in Python.
 \lstinputlisting{../scripts/checkpoint_5a.py}
 
 Test this method yourself, with a loop taking temperature measurements and displaying them on the screen.
@@ -290,11 +291,11 @@ Test this method yourself, with a loop taking temperature measurements and displ
 
 \item[5.2.] Measure temperature with the DS18B20 sensor versus time.
 Choose a sensible time interval, and note that taking a single temperature measurement is quite slow.
-Write a python script to make a graph of 50 temperature measurements versus time.
+Write a Python script to make a graph of 50 temperature measurements versus time.
 Always label plots correctly with title and axes and save these to a file.
  
 %As a second step the graph should update itself as each temperature measurement is made.
-%Write a python script for this purpose.
+%Write a Python script for this purpose.
 %Once this is working, play with it by touching the temperature sensor with your fingers.
 %Describe what is happening and sketch it in your lab book.
 
@@ -308,9 +309,9 @@ Always label plots correctly with title and axes and save these to a file.
 You don't need to make separate connections to the Raspberry Pi: your new sensor can sit in the same breadboard tracks as the existing one (just make sure that you connect it the right way around).
 
 Find its serial number in the w1/devices folder like before.
-Now ensure that you can read out your two temperature sensors simultaneously in python.
+Now ensure that you can read out your two temperature sensors simultaneously in Python.
 
-%You can test this by running python in interactive mode first. 
+%You can test this by running Python in interactive mode first. 
 %Note that your temperature sensors will have different serial numbers.
 %
 %\begin{verbatim}

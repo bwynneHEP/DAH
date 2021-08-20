@@ -32,32 +32,31 @@ We suggest that you start by reading up on Fourier transformations, which you le
 There are many ways of completing this project. To give you a better idea of what may be required, take a look at the three examples below, listed in the order of increasing complexity. 
 
 \begin{enumerate}
-\item	Use the \webiopi framework. This is the simplest approach because it requires almost no new knowledge. You would use the signal generator to produce a waveform and connect the ADC (MC3208) chip to the Raspberry-PI using the SPI interface. Use the ADC chip (MCP3208) to sample the signal at regular intervals, fill an array of a fixed length (say, 1024 samples) and perform an FFT analysis of the data using a Numpy library (routine  \begin{tt}numpy.fft.rfft()\end{tt}).
- You would then save the absolute values of the FFT data to file and display these on a screen. This task would allow you to develop the FFT analysis and the displays. The amount of work for this is similar to a checkpoint. 
+\item	Use the DAH software. This is the simplest approach because it requires almost no new knowledge. You would use the signal generator to produce a waveform and connect the ADC chip (MCP3208) to the Raspberry-PI using the SPI interface. Use the ADC to sample the signal at regular intervals, fill an array of a fixed length (say, 1024 samples) and perform an FFT analysis of the data using a Numpy library (routine  \begin{tt}numpy.fft.rfft()\end{tt}). You would then save the absolute values of the FFT data to file and display these on a screen. This task would allow you to develop the FFT analysis and the displays. The amount of work for this is similar to a checkpoint.
 
-While such an FFT analyser is simple to build and control, it has severe limitations. \webiopi allows only for a very low sampling rate (as studied in Checkpoint 3). There can be missing parts in the recorded samples ("data holes") as the Raspberry-Pi is not a real-time computer. The Raspberry-Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
+While such an FFT analyser is simple to build and control, it has limitations. The sampling rate will be low (as studied in Checkpoint 3). There can be missing parts in the recorded samples ("data holes") as the Raspberry-Pi is not a real-time computer. The Raspberry-Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
 
-\item Use the MCP3208 ADC chip, but control and read its output directly through the serial interface SPI using a python library called \begin{tt}spidev\end{tt}, which is already installed on the Raspberry-Pi.
+%\item Use the MCP3208 ADC chip, but control and read its output directly through the serial interface SPI using a Python library called \begin{tt}spidev\end{tt}, which is already installed on the Raspberry-Pi.
 %
-\begin{comment}
-which you will need to install on the Raspberry-Pi:
-    pi@Demonstrator-pi ~ $ mkdir spidev 
-    pi@Demonstrator-pi ~ $ cd spidev 
-    pi@Demonstrator-pi ~ /spidev $ wget https://raw.github.com/doceme/py-   spidev/master/setup.py 
-    pi@Demonstrator-pi ~ /spidev $ wget https://raw.github.com/doceme/py-    pi@Demonstrator-pi ~ $spidev/master/spidev_module.c 
-    pi@Demonstrator-pi ~ /spidev $ sudo python setup.py install  
-\end{comment}
+%\begin{comment}
+%which you will need to install on the Raspberry-Pi:
+%    pi@Demonstrator-pi ~ $ mkdir spidev 
+%    pi@Demonstrator-pi ~ $ cd spidev 
+%    pi@Demonstrator-pi ~ /spidev $ wget https://raw.github.com/doceme/py-   spidev/master/setup.py 
+%    pi@Demonstrator-pi ~ /spidev $ wget https://raw.github.com/doceme/py-    pi@Demonstrator-pi ~ $spidev/master/spidev_module.c 
+%    pi@Demonstrator-pi ~ /spidev $ sudo python setup.py install  
+%\end{comment}
 %
-The spidev library has a routine called \begin{tt}xfer()\end{tt}  that sends an array of bytes to the ADC through the SPI interface and receives ADC data in response to this request. Use \begin{tt}xfer()\end{tt}   to instruct the ADC to measure the voltage. To read the voltage from CH0 of the ADC one needs to send three bytes [6,0,0] 
-which instructs the ADC to select channel CH0, measure the voltage and then send back another three bytes (ignore the first byte, the second and the third are the high and the low byte of the 12-bit integer output of the ADC) to the Raspberry-Pi.
-
-\lstinputlisting{../scripts/project_B_a.py}
- 
-This method is much faster than \webiopi  and it is possible to record up to 5k samples per second, however real-time sampling is not possible and there can be holes in the data.
+%The spidev library has a routine called \begin{tt}xfer()\end{tt}  that sends an array of bytes to the ADC through the SPI interface and receives ADC data in response to this request. Use \begin{tt}xfer()\end{tt}   to instruct the ADC to measure the voltage. To read the voltage from CH0 of the ADC one needs to send three bytes [6,0,0] 
+%which instructs the ADC to select channel CH0, measure the voltage and then send back another three bytes (ignore the first byte, the second and the third are the high and the low byte of the 12-bit integer output of the ADC) to the Raspberry-Pi.
+%
+%\lstinputlisting{../scripts/project_B_a.py}
+% 
+%This method is much faster than \webiopi  and it is possible to record up to 5k samples per second, however real-time sampling is not possible and there can be holes in the data.
 
 \item	Use the Arduino, a real-time \microcontroller, which  is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals, 
 The Arduino is based on an 8-bit 16MHz chip ATmega328 and does not have an operating system by default, so it supports real-time computing, i.e. the program does not get interrupted. The Arduino also has a built-in 10-bit ADC. For this project, the Arduino is used as an ADC and a data buffer connected to the Raspberry-Pi and it will be made available pre-programmed. From your perspective the Arduino will behave as "black box", i.e. an ADC with a buffer memory that can be accessed through an USB interface. (Note: If you are interested, you may familiarise yourself with Arduino-IDE package and upload the code, {\tt ADCforRPI4.ino},  available on  \url{https://github.com/fmuheim/DAH}. 
-You will need to write python code that communicates with the Arduino using the \begin{tt}serial\end{tt} library.\\
+You will need to write Python code that communicates with the Arduino using the \begin{tt}serial\end{tt} library.\\
 
 \lstinputlisting{../scripts/project_B_b.py}
 
@@ -73,7 +72,7 @@ Performing an FFT analysis a data sample is straightforward, for example you can
 
 \item	You will use FFT to analyse the spectrum of a several repetitive signal shapes, including a sinusoidal, a square and a saw waveform generated by the function generator, and compare the amplitudes of different harmonics to mathematically predicted ones for that signal.
 
-\item Investigate which of the many python libraries that are available for drawing on the screen best suits your needs. For example, mathplotlib can be employed to produce high-quality figures, but may be too slow to present data in real time. The \begin{tt}pygame\end{tt} library supports drawing simple figures (points, lines, etc.) and is very fast, simple to use, and sufficient for making simple plots of the input signals and its FFT spectrum.
+\item Investigate which of the many Python libraries that are available for drawing on the screen best suits your needs. For example, mathplotlib can be employed to produce high-quality figures, but may be too slow to present data in real time. The \begin{tt}pygame\end{tt} library supports drawing simple figures (points, lines, etc.) and is very fast, simple to use, and sufficient for making simple plots of the input signals and its FFT spectrum.
 
 \item There are additional methods for generating signals. For example you can use a microphone to record acoustic signals and perform FFT analyses on these samples. Can you use it e.g. to determine the pitch of a whistled note?
 
@@ -109,7 +108,7 @@ Some of this equipment will be located in the red box C. You will have to share 
 \subsection{Building the synthesizer}
 
 The SPI I/O expander chip (MCP23S17) is supported by the \webiopi framework. In checkpoint 4 you used an 8 bit I2C expander chip in a very similar way, so you can build upon this work. For this project we recommend that you use the MCP23S17 chip, which is a 16 bit SPI expander. While the
-two expander chips are different devices the same python methods can be applied when using \webiopi.
+two expander chips are different devices the same Python methods can be applied when using \webiopi.
 
 \lstinputlisting{../scripts/project_C_c.py}
 \vspace*{-0.5cm}
@@ -234,7 +233,7 @@ Now that you have a functioning ultrasonic range finder there are several possib
 Note that the loudspeakers are power hungry, so they  should be connected  via USB to the 
 monitor.
 
-To play an audio file (sampled note) you can use an application such as \begin{tt}aplay\end{tt}. Below an example is given of how to play a note using a python script.\\
+To play an audio file (sampled note) you can use an application such as \begin{tt}aplay\end{tt}. Below an example is given of how to play a note using a Python script.\\
 
 \lstinputlisting{../scripts/project_D_a.py}
 \vspace*{-0.5cm}
@@ -309,7 +308,7 @@ Remember that you have additional (but not waterproof!) sensors that you used in
 Your project should include a way of displaying the current temperature of the liquid, and previous measurements.
 You should also include a visual indication of the state of the Peltier, rather than just poking it to see if it feels cold.
 
-The circuit to power and control your Peltier device is simple, but you should think carefully about when your python code should switch the cooling on and off.
+The circuit to power and control your Peltier device is simple, but you should think carefully about when your Python code should switch the cooling on and off.
 Rather than having a simple threshold temperature for turning the cooling on and off, you may want to use a hysteresis loop.
 Rapidly toggling power to the Peltier in an uncontrolled fashion is unlikely to give good performance.
 
@@ -340,7 +339,7 @@ The projects have an open-ended aspect and are an opportunity where you can show
 Note: this is a data analysis project, which does not require use of the Raspberry Pi.
 This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
 You may also use your own laptop computer, but you will need to be able to install
-python and python packages on your own. 
+Python and Python packages on your own. 
 
 
 \subsection{Detailed project description}
@@ -364,7 +363,7 @@ The files are written in binary format and contain five observables for a large 
 \item transverse momentum $p_{\perp,2}$ of second muon in GeV/$c$.
 \end{itemize}
 
-Write a python script that reads the data from this file, see below. Plot histograms of all six variables, choosing a reasonable bin width. Always label plots correctly with title and axes and save these to a file. 
+Write a Python script that reads the data from this file, see below. Plot histograms of all six variables, choosing a reasonable bin width. Always label plots correctly with title and axes and save these to a file. 
 
 \lstinputlisting{../scripts/project_F_a.py}
 \vspace*{-0.5cm}
@@ -431,7 +430,7 @@ The projects have an open-ended aspect and are an opportunity where you can show
 Note: this is a data analysis project, which does not require use of the Raspberry Pi.
 This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
 You may also use your own laptop computer, but you will need to be able to install
-python and python packages on your own. 
+Python and Python packages on your own. 
 
 
 \subsection{Detailed project description}
@@ -529,7 +528,7 @@ The projects have an open-ended aspect and are an opportunity where you can show
 Note: this is a data analysis project, which does not require use of the Raspberry Pi.
 This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
 You may also use your own laptop computer, but you will need to be able to install
-python and python packages on your own. 
+Python and Python packages on your own. 
 
 
 \subsection{Detailed project description}
@@ -753,7 +752,7 @@ Find out how to read temperature and humidity from the DHT22 Adafruit webpage,
 
 Reading temperature and humidity using a web browser is 
 straightforward, but you want to go beyond single measurements.
-Write a python script which samples a series of measurements
+Write a Python script which samples a series of measurements
 and displays these. For this you need to parse the web server data.
 Use the instructions at
 %\url{http://www.diveintopython.net/html_processing/extracting_data.html} 
@@ -765,7 +764,7 @@ update frequency? Further possible applications could include the following:
 
 \begin{enumerate}
 
-\item Write a  well structured python script in which reading the temperature and humidity sensor are
+\item Write a  well structured Python script in which reading the temperature and humidity sensor are
 functions or classes.  Convert temperature values from Fahrenheit into Celsius.
 
 \item Write a script which displays an animated series of measurements in real time.
@@ -777,9 +776,9 @@ and explain what you observe.
 \item Display the temperature and humidity on an  LCD display. 
 Connect the LCD display to top of the Raspberry-Pi. 
 Make sure that you use the provided GPIO port Extender plug to keep the LCD board from touching the  USB and Ethernet ports of the Raspberry-Pi. 
-Download the python script {\tt  char\_lcd\_plate.py} from  \url{https://github.com/fmuheim/DAH}. Run this script to understand how to program the LCD display. Consulting the instructions at \\
+Download the Python script {\tt  char\_lcd\_plate.py} from  \url{https://github.com/fmuheim/DAH}. Run this script to understand how to program the LCD display. Consulting the instructions at \\
 \url{https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage}, 
-write a python script which regularly reads  and updates temperature (in Celsius) and humidity 
+write a Python script which regularly reads  and updates temperature (in Celsius) and humidity 
 on the LCD display.
 
 \end{enumerate}
