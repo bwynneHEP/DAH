@@ -34,7 +34,7 @@ There are many ways of completing this project. To give you a better idea of wha
 \begin{enumerate}
 \item	Use the DAH software. This is the simplest approach because it requires almost no new knowledge. You would use the signal generator to produce a waveform and connect the ADC chip (MCP3208) to the Raspberry-PI using the SPI interface. Use the ADC to sample the signal at regular intervals, fill an array of a fixed length (say, 1024 samples) and perform an FFT analysis of the data using a Numpy library (routine  \begin{tt}numpy.fft.rfft()\end{tt}). You would then save the absolute values of the FFT data to file and display these on a screen. This task would allow you to develop the FFT analysis and the displays. The amount of work for this is similar to a checkpoint.
 
-While such an FFT analyser is simple to build and control, it has limitations. The sampling rate will be low (as studied in Checkpoint 3). There can be missing parts in the recorded samples ("data holes") as the Raspberry-Pi is not a real-time computer. The Raspberry-Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
+While such an FFT analyser is simple to build and control, it has limitations. The sampling rate will be low (as studied in Checkpoint 3). There can be missing parts in the recorded samples (``data holes'') as the Raspberry-Pi is not a real-time computer. The Raspberry-Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
 
 %\item Use the MCP3208 ADC chip, but control and read its output directly through the serial interface SPI using a Python library called \begin{tt}spidev\end{tt}, which is already installed on the Raspberry-Pi.
 %
@@ -55,7 +55,7 @@ While such an FFT analyser is simple to build and control, it has limitations. T
 %This method is much faster than \webiopi  and it is possible to record up to 5k samples per second, however real-time sampling is not possible and there can be holes in the data.
 
 \item	Use the Arduino, a real-time \microcontroller, which  is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals, 
-The Arduino is based on an 8-bit 16MHz chip ATmega328 and does not have an operating system by default, so it supports real-time computing, i.e. the program does not get interrupted. The Arduino also has a built-in 10-bit ADC. For this project, the Arduino is used as an ADC and a data buffer connected to the Raspberry-Pi and it will be made available pre-programmed. From your perspective the Arduino will behave as "black box", i.e. an ADC with a buffer memory that can be accessed through an USB interface. (Note: If you are interested, you may familiarise yourself with Arduino-IDE package and upload the code, {\tt ADCforRPI4.ino},  available on  \url{https://github.com/fmuheim/DAH}. 
+The Arduino is based on an 8-bit 16MHz chip ATmega328 and does not have an operating system by default, so it supports real-time computing, i.e. the program does not get interrupted. The Arduino also has a built-in 10-bit ADC. For this project, the Arduino is used as an ADC and a data buffer connected to the Raspberry-Pi and it will be made available pre-programmed. From your perspective the Arduino will behave as ``black box,'' i.e. an ADC with a buffer memory that can be accessed through an USB interface. (Note: If you are interested, you may familiarise yourself with Arduino-IDE package and upload the code, {\tt ADCforRPI4.ino},  available on  \url{https://github.com/fmuheim/DAH}. 
 You will need to write Python code that communicates with the Arduino using the \begin{tt}serial\end{tt} library.\\
 
 \lstinputlisting{../scripts/project_B_b.py}
@@ -76,7 +76,7 @@ Performing an FFT analysis a data sample is straightforward, for example you can
 
 \item There are additional methods for generating signals. For example you can use a microphone to record acoustic signals and perform FFT analyses on these samples. Can you use it e.g. to determine the pitch of a whistled note?
 
-\item The Arduino is used as a "black box" for this project. Learning how to program was deemed to be incompatible with the timescale of the project. However, if you have used the Arduino before or are sufficiently curious, you are welcome to investigate. There might be also other options for reading the data, and you are encouraged to investigate this.
+\item The Arduino is used as a ``black box'' for this project. Learning how to program was deemed to be incompatible with the timescale of the project. However, if you have used the Arduino before or are sufficiently curious, you are welcome to investigate. There might be also other options for reading the data, and you are encouraged to investigate this.
 
 \end{enumerate}
 
@@ -206,7 +206,7 @@ You will need to make a few changes in your script  to get it to work.
 Hints: The output of the HC-SR04 module is a logic level one of 5 V. The Raspberry-Pi works with 3.3V logic signals. A 1 k$\Omega$ resistor in series will limit the current in the circuit to prevent damaging the Raspberry Pi.
  
 \begin{enumerate}
-\item 	Work out how the HC-SR04 sensor operates. What are the "Trig" and "Echo" pins of the HC-SR04 module used for? Use the oscilloscope to capture these signals when running the code example. 
+\item 	Work out how the HC-SR04 sensor operates. What are the ``Trig'' and ``Echo'' pins of the HC-SR04 module used for? Use the oscilloscope to capture these signals when running the code example. 
 
 \item Use these data to explain in detail how the module works and how it is possible to measure distance using ultrasonic waves.
 
@@ -226,7 +226,7 @@ Now that you have a functioning ultrasonic range finder there are several possib
 
 \item	Try to understand better the properties and limitations of your device. What are the minimum and maximum size of objects the range finder is able to detect? Play with reflecting surfaces of different areas and define the angular range (span of angles) within the range finder works? Is this approach suitable for large or small objects? Is there a relation between the distance and the size of the reflection area?
 
-\item Develop an application of your choice. An example could be an electronic "Car Parking Assistant" where sounds are created and LEDs flash (or similar) if the sensor gets too close to an object.
+\item Develop an application of your choice. An example could be an electronic ``Car Parking Assistant'' where sounds are created and LEDs flash (or similar) if the sensor gets too close to an object.
 
 \item Perform a calibration of the distance scale of your application.
 
@@ -350,7 +350,7 @@ You were previously introduced to the LHCb Upsilon data.
 The LHCb experiment at the Large Hadron Collider at CERN has recorded a sample of muon pairs with invariant masses in the range of 8.5 to 11 GeV/$c^2$. Three clear peaks are observed in this mass spectrum. These correspond to the production of Upsilon mesons, which are bound states of a $b$ and a anti-$b$ quark. These states are known as the $\Upsilon \rm (1S)$, $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ mesons where the $\Upsilon \rm (1S)$ meson is the ground state and the $\Upsilon \rm (2S)$  and $\Upsilon \rm (3S)$  states are radial excitations (for LHCb paper, see {DOI: 10.1007/JHEP06(2013)064).}
 
 
-During checkpoint 6, you performed some very simple "peak finding". In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
+During checkpoint 6, you performed some very simple ``peak finding.'' In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
 
 Download the files ups-15.bin, ups-15-small.bin and mc.bin   from the DAH Dropbox, 
 These files contain the data recorded by LHCb in 2015 and a subset with a factor 5 less data. 
@@ -389,7 +389,7 @@ Plot the fitted signal shape on top of the data.
 
 \item Now consider the entire mass range, and perform a simultaneous fit for all three Upsilon peaks, and the underlying background. Again you should always report the parameter values, and their errors. Plot the fitted signal shape on top of the data.
 
-\item The results so far probably look "quite good" by eye.  i.e. the signal shape plotted on top of the data probably looks like it fits quite well.  However this can be misleading when performing a precision measurement.  You should make a plot of what are called the "residuals". A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin. Describe what you see.
+\item The results so far probably look ``quite good'' by eye.  i.e. the signal shape plotted on top of the data probably looks like it fits quite well.  However this can be misleading when performing a precision measurement.  You should make a plot of what are called the ``residuals.'' A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin. Describe what you see.
 
 \item There are several ways to enhance the scope of the project. For example, if the single Gaussian mass model does not fit the data perfectly, one can try other mass models, i.e. by using a signal PDF that goes beyond a single Gaussian function.  Examples are:
 \begin{itemize}
@@ -444,7 +444,7 @@ peaks are observed in this mass spectrum corresponding to the $D_s^+$
 and $D^+$ mesons, see figure below % (Fig.~\ref{fig:dmass}). 
 For more information see: {DOI:10.1007/JHEP06(2013)065}. 
  
-During checkpoint 6, you performed some very simple "peak finding". In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
+During checkpoint 6, you performed some very simple ``peak finding.'' In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
 
 %
 %\begin{figure}[htb!]
@@ -481,10 +481,10 @@ Plot the fitted signal shape on top of the data.
 \item Now consider the entire mass range, and perform a simultaneous fit for both
 peaks, and the underlying background. Again you should always report the parameter
 values, and their errors. Plot the fitted signal shape on top of the data.
-\item The results so far probably look "Äùquite good"Äù by eye. i.e. the signal shape plotted on
+\item The results so far probably look ``quite good'' by eye. i.e. the signal shape plotted on
 top of the data probably looks like it fits quite well. However this can be misleading
 when performing a precision measurement. You should make a plot of what are called
-the "Äùresiduals"Ä. A residual is the difference between the data in the binned histogram
+the ``residuals.'' A residual is the difference between the data in the binned histogram
 and the best-fit mass model value for the centre of that bin. Describe what you see.
 \item There are several ways to enhance the scope of the project.
 
@@ -548,7 +548,7 @@ there is an additional background from the decay $B^0 \rightarrow
 a pion. For more information see: {DOI: 10.1016/j.nuclphysb.2013.03.004 and DOI: 10.1016/j.physletb.2015.06.038}.
 
 
-During checkpoint 6, you performed some very simple "peak finding". In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
+During checkpoint 6, you performed some very simple ``peak finding.'' In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
 
 %
 %\begin{figure}[htb!]
@@ -592,7 +592,7 @@ Plot the fitted signal shape on top of the data.
 peaks, and the underlying background. Again you should always report the parameter
 values, and their errors. Plot the fitted signal shape on top of the data.
 
-\item The results so far probably look "quite good" by eye.  i.e. the signal shape plotted on top of the data probably looks like it fits quite well.  However this can be misleading when performing a precision measurement.  You should make a plot of what are called the "residuals". A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin. Describe what you see.
+\item The results so far probably look ``quite good'' by eye.  i.e. the signal shape plotted on top of the data probably looks like it fits quite well.  However this can be misleading when performing a precision measurement.  You should make a plot of what are called the ``residuals.'' A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin. Describe what you see.
 
 \newpage
 
@@ -694,19 +694,19 @@ go to Arduino $\rightarrow$ File $\rightarrow$ Preferences and copy the followin
 the Additional Board Manager URLs field: 
 \hspace*{5mm} {\tt http://arduino.esp8266.com/stable/package\_esp8266com\_index.json}\\
 Then you invoke  the Board Manager (Tools $\rightarrow$ Board $\rightarrow$ Boards Manager),
-search for say "ESP" and install "esp8266 by ESP8266 Community".
+search for say ``ESP'' and install ``esp8266 by ESP8266 Community.''
 If successful, the  ESP8266 should appear under Tools $\rightarrow$ Board. 
 Check that the CPU Frequency is set correctly (80 MHz) on the \microcontroller
 and set upload baud rate (115200)  and the matching port of your USB to serial cable (e.g. COM4).
 
 In addition you need to install two libraries.
-Use the library manager (Sketch $\rightarrow$  Include Libraries $\rightarrow$ Library Manager), first  search for  say "Adafruit Unified" and install "Adafruit Unified Sensor library by Adafruit" then search for say "DHT" and install "DHT sensor library by Adafruit".
+Use the library manager (Sketch $\rightarrow$  Include Libraries $\rightarrow$ Library Manager), first  search for  say ``Adafruit Unified'' and install ``Adafruit Unified Sensor library by Adafruit'' then search for say ``DHT'' and install ``DHT sensor library by Adafruit.''
 %There is one more step. You need to replace the file {\tt libm.a} from the following path,\\
 %\hspace*{5mm}{\tt C:$\backslash$Users$\backslash<$username$>\backslash$AppData$\backslash%$Roaming$\backslash$Arduino15$\backslash$packages$\backslash$esp8266$\backslash$tools\\
 %\hspace*{5mm}$\backslash$xtensa-lx106-elf-gcc$\backslash$1.20.0-26-gb404fb9$\backslash$xtensa-lx106-elf$\backslash$lib}\\ with a file with the same name, available from  \url{https://github.com/fmuheim/DAH}. 
 
 
-\item As a first  programming exercise, perform the "Blink Test". Consult the instructions on
+\item As a first  programming exercise, perform the ``Blink Test.'' Consult the instructions on
 {\tt .../using-arduino-ide}.
 Copy the code into an Arduino IDE sketch, compile the code (Sketch $\rightarrow$ Verify / Compile) and upload ($\Rightarrow$) to the \microcontroller. 
 The sketch will start immediately - you'll see the LED blinking. Hooray!
