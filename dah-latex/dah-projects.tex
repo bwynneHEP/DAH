@@ -107,8 +107,10 @@ Some of this equipment will be located in the red box C. You will have to share 
 
 \subsection{Building the synthesizer}
 
-The SPI I/O expander chip (MCP23S17) is supported by the \webiopi framework. In checkpoint 4 you used an 8 bit I2C expander chip in a very similar way, so you can build upon this work. For this project we recommend that you use the MCP23S17 chip, which is a 16 bit SPI expander. While the
-two expander chips are different devices the same Python methods can be applied when using \webiopi.
+The SPI I/O expander chip (MCP23S17) can be used in a very similar way to the I2C expander chip you used in checkpoint 4, so you can build upon this work.
+%For this project we recommend that you use the MCP23S17 chip, which is a 16 bit SPI expander.
+While the two expander chips are different devices, similar Python methods can be applied.% when using \webiopi.
+Note that the MCP23S17 has specific input and output modes for the pins, which can be set with the \texttt{setInput} and \texttt{setOutput} methods.
 
 \lstinputlisting{../scripts/project_C_c.py}
 \vspace*{-0.5cm}
@@ -292,7 +294,7 @@ Do not power the device for more than a few seconds without this heat sink, or y
 You may also need a heat sink for the transistor.
 
 The temperature of the liquid must be monitored, so you will need to find a way to get the 1-wire sensors near to it.
-You will be provided with a waterproof temperature sensor, with part number DS18B20, so you will need to adjust your code appropriately if reading it with \webiopi.
+You will be provided with a waterproof temperature sensor, with part number DS18B20, so you will need to adjust your code appropriately.% if reading it with \webiopi.
 
 \subsection{Monitoring and controlling the temperature}
 

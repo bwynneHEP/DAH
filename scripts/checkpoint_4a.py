@@ -1,20 +1,13 @@
-# Imports
-import webiopi
-from webiopi.devices.digital.pcf8574 import PCF8574A
-
-# Retrieve GPIO lib
-GPIO = webiopi.GPIO
+# Import I/O expander chip library
+from DAH import PCF8574A
 
 # Setup chip
-mcp = PCF8574A(0x38)
+pcf = PCF8574A(address=0x38)
 
-# Set which PCF8574 GPIO pin is connected to the LED
+# A variable to store the pin number for the LED
 LED0 = 0
 
-# Set pin as output
-mcp.setFunction(LED0, GPIO.OUT)
+# Turn off the LED by setting the pin high
+pcf.digitalWrite(LED0, True)
 
-# Turn on the LED
-mcp.digitalWrite(LED0, GPIO.LOW)
- 
 # Insert your code here

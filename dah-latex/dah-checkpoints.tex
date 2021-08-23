@@ -200,21 +200,25 @@ Make sure that all required connections between the PCF8574AN chip and the Raspb
 Using negative logic connect an LED to output P0 of the PCF8574AN Expander chip. 
 Write a Python script to blink the LED, similar to what you did in Checkpoint 1.
 
-You may consult the \webiopi webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) to find information on the GPIO expander chip.
+%You may consult the \webiopi webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) to find information on the GPIO expander chip.
 
-{\bf NB:} The GPIO library used here is different to that used in Checkpoint 1.
-The RPi.GPIO definitions are not compatible with the \webiopi I/O expander commands. \\
+%{\bf NB:} The GPIO library used here is different to that used in Checkpoint 1.
+%The RPi.GPIO definitions are not compatible with the \webiopi I/O expander commands. \\
 
 \lstinputlisting{../scripts/checkpoint_4a.py}
 
 \item [4.2.] Connect an additional 3 LEDs to outputs P1, P2 and P3 of the PCF8574AN Expander chip.
-Write a Python script which turns the LEDs on and off in a cycle of defined patterns, using the portWrite(value) method to control all four LEDs at the same time.
-Experiment with portWrite and make sure you understand how the value you pass to it affects the LEDs.
+Write a Python script which turns the LEDs on and off in a defined pattern, using the \texttt{portWrite} method to control all four LEDs at the same time.
+Experiment with \texttt{portWrite} --- it takes a numerical value as its argument.
+Make sure you understand how the value you give to it affects the LEDs.
 
 %\newpage
 %\item [4.3.] Consult the webpage \url{http://webiopi.trouch.com/} ($\rightarrow$ Tutorials $\rightarrow$ Using Devices $\rightarrow$ Digital) for the GPIO Expander. Use the portWrite(value) method to manipulate all four LEDs at the same time.  Connect a push button switch to pin P4 of the expander chip. Write a Python script such that an LED pattern toggles every time the button is pushed.\\
 
-%\lstinputlisting{../scripts/checkpoint_4b.py}
+\item [4.3.] Connect a push button switch to pin P7 of the expander chip.
+Modify your Python script so that the button can be used to change the LED pattern.
+
+\lstinputlisting{../scripts/checkpoint_4b.py}
 %\hfill [3 marks]\\
 
 \end{enumerate}
@@ -232,9 +236,9 @@ Experiment with portWrite and make sure you understand how the value you pass to
 \end{enumerate}
 \hfill {\bf[3~marks]}
 
-\item Submit your code where you use the portWrite command to display multiple different patterns with four LEDs.
-Ensure that the code comments explain how your inputs to portWrite create a particular pattern.
-\hfill {\bf[2~marks]}
+\item Submit your code where you use the \texttt{portWrite} command to display multiple different patterns with four LEDs.
+Ensure that the code comments explain how \texttt{portWrite} creates a particular pattern, and how this changes when the button is pressed.
+\hfill {\bf[3~marks]}
 
 \item Submit photos (or video if possible) of the LEDs changing as your code runs.
 \hfill {\bf[1~mark]}
@@ -254,6 +258,7 @@ Connect a DS182B0 temperature sensor to your Raspberry Pi (look at the flat fron
 \begin{center}
     \includegraphics[width=14cm]{figs/DS182B0}
 \end{center}
+{\bf NB:} If your sensor gets very hot you have connected it backwards! Disconnect it immediately.
 
 %What is the interface between the DS18B20 temperature sensor and the Raspberry Pi? Explain how it works. 
 
@@ -269,19 +274,22 @@ Locate the sensor output by finding the file that has the serial number of your 
     studentnn@dahpimm /sys/bus/w1/devices $ ls 
     10-00080265b6d6 w1_bus_master1 
 \end{verbatim}
-Note that your temperature sensor won't be called 10-00080265b6d6, this is just an example.
+%Your temperature sensor will be called something similar to 10-00080265b6d6, but is just an example.
 
-Now read the sensor output, i.e. the raw temperature measurement:
-\begin{verbatim}
-    studentnn@dahpimm /sys/bus/w1/devices ~ $ cd 10-00080265b6d6
-    studentnn@dahpimm /sys/bus/w1/devices/10-00080265b6d6 $ cat w1_*
-    30 00 4b 46 ff ff 0d 10 29 : crc=29 YES 
-    30 00 4b 46 ff ff 0d 10 29 t=23937 
-\end{verbatim}
-This should be interpreted as $23.937^{\circ}$C.
+%Now read the sensor output, i.e. the raw temperature measurement:
+%\begin{verbatim}
+%    studentnn@dahpimm /sys/bus/w1/devices ~ $ cd 10-00080265b6d6
+%    studentnn@dahpimm /sys/bus/w1/devices/10-00080265b6d6 $ cat w1_*
+%    30 00 4b 46 ff ff 0d 10 29 : crc=29 YES 
+%    30 00 4b 46 ff ff 0d 10 29 t=23937 
+%\end{verbatim}
+%This should be interpreted as $23.937^{\circ}$C.
 
-\newpage
-WebIOPi provides a simple way to access the temperature sensor data in Python.
+%\newpage
+%WebIOPi provides a simple way to access the temperature sensor data in Python.
+
+Your temperature sensor will be called something similar to \texttt{10-00080265b6d6}, but this is just an example.
+You can read the temperature sensor data in Python like this, using the serial number you found for your sensor.
 \lstinputlisting{../scripts/checkpoint_5a.py}
 
 Test this method yourself, with a loop taking temperature measurements and displaying them on the screen.
@@ -299,8 +307,9 @@ Always label plots correctly with title and axes and save these to a file.
 %Once this is working, play with it by touching the temperature sensor with your fingers.
 %Describe what is happening and sketch it in your lab book.
 
-%The following code example shows how to display a plot that updates regularly: \\
-%\lstinputlisting{../scripts/checkpoint_5b.py}
+Sitting watching a blank screen is boring.
+The following code example shows how to display a plot that updates as new data is recorded over time, if you want to try it:
+\lstinputlisting{../scripts/checkpoint_5b.py}
 %\hfill [3 marks]
 
 
@@ -308,7 +317,7 @@ Always label plots correctly with title and axes and save these to a file.
 \item[5.3.]	Add another temperature sensor to your circuit by connecting it in parallel with the existing one. 
 You don't need to make separate connections to the Raspberry Pi: your new sensor can sit in the same breadboard tracks as the existing one (just make sure that you connect it the right way around).
 
-Find its serial number in the w1/devices folder like before.
+Find its serial number in the \texttt{w1/devices} folder like before.
 Now ensure that you can read out your two temperature sensors simultaneously in Python.
 
 %You can test this by running Python in interactive mode first. 
@@ -317,7 +326,7 @@ Now ensure that you can read out your two temperature sensors simultaneously in 
 %\begin{verbatim}
 %    studentnn@dahpimm  ~ $ python3
 %\end{verbatim}
-\lstinputlisting{../scripts/checkpoint_5c.py}
+%\lstinputlisting{../scripts/checkpoint_5c.py}
 %
 %What is the smallest change in temperature that a sensor can report? Explain this with reference to the datasheet, and how the temperature information is encoded.
 %
@@ -332,6 +341,7 @@ Now ensure that you can read out your two temperature sensors simultaneously in 
 %\hfill [3 marks]
 
 Modify your graphing code from part 5.2 to display data from both temperature sensors on a single graph.
+Take a set of temperature measurements from both sensors reading the (hopefully) constant background temperature in the lab, and calculate the mean and standard deviation for each sensor separately.
 
 
 \end{enumerate}
