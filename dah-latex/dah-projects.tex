@@ -6,7 +6,9 @@
 
 \subsection{Goals of project}
 
-You will develop and build a real-time spectrum analyser. This device will sample an analog signal and perform a Fast Fourier Transform (FFT) analysis and the results can be displayed and/or written to a file. The ADC MC3208 chip, which was used during the checkpoints,  could be a part of this project. 
+You will develop and build a real-time spectrum analyser.
+This device will sample an analog signal and perform a Fast Fourier Transform (FFT) analysis, and the results can be displayed and/or written to a file.
+The ADC MC3208 chip, which was used during the checkpoints, could be a part of this project. 
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
@@ -14,27 +16,40 @@ The projects have an open-ended aspect and are an opportunity where you can show
 \subsection{Equipment for project B}
 
 For this project you will need the following items:
-\begin{itemize} 
-\item Raspberry-Pi
+\begin{itemize}
+\item Raspberry Pi
 \item Signal generator
 \item Analog to Digital Converter (MCP3208)
 \item Arduino Uno 
-\item USB cable to connect Arduino to Raspberry-Pi.
-\item Microphone with preamplifier if you want to analyse acoustic signals. 
+\item USB cable to connect Arduino to Raspberry Pi
+\item Microphone with preamplifier if you want to analyse acoustic signals
 \end{itemize}
-Some of this equipment will be located in the red box B. You will have to share some items between Tuesday and Thursday sessions. 
+Some of this equipment will be located in the red box B.
+You will have to share some items between Tuesday and Thursday sessions.
 
 
 \subsection{Building the FFT spectrum analyser}
 
-We suggest that you start by reading up on Fourier transformations, which you learned in a 3rd year course, and the Fast Fourier Transform as a particularly effective numerical implementation. You may also want to familiarise yourself with the Arduino micro controller, e.g. at \url{http://www.arduino.cc/}. It is suggested to develop and build the spectrum analyser in a modular way, e.g. to develop the FFT analysis separately from the real-time data acquisition, before combining these tasks.
+We suggest that you start by reading up on Fourier transformations, which you learned in a 3rd year course, and the Fast Fourier Transform as a particularly effective numerical implementation.
+You may also want to familiarise yourself with the Arduino micro controller, starting at \url{http://www.arduino.cc/}.
+It is suggested to develop and build the spectrum analyser in a modular way, e.g. to develop the FFT analysis separately from the real-time data acquisition, before combining these tasks.
 
-There are many ways of completing this project. To give you a better idea of what may be required, take a look at the three examples below, listed in the order of increasing complexity. 
+There are many ways of completing this project.
+To give you a better idea of what may be required, take a look at the examples below, listed in order of increasing complexity. 
 
 \begin{enumerate}
-\item	Use the DAH software. This is the simplest approach because it requires almost no new knowledge. You would use the signal generator to produce a waveform and connect the ADC chip (MCP3208) to the Raspberry-PI using the SPI interface. Use the ADC to sample the signal at regular intervals, fill an array of a fixed length (say, 1024 samples) and perform an FFT analysis of the data using a Numpy library (routine  \begin{tt}numpy.fft.rfft()\end{tt}). You would then save the absolute values of the FFT data to file and display these on a screen. This task would allow you to develop the FFT analysis and the displays. The amount of work for this is similar to a checkpoint.
+\item	Use the DAH software.
+This is the simplest approach because it requires almost no new knowledge.
+You would use the signal generator to produce a waveform and connect the ADC chip (MCP3208) to the Raspberry Pi using the SPI interface.
+Use the ADC to sample the signal at regular intervals, fill an array of a fixed length (say, 1024 samples) and perform an FFT analysis of the data using a Numpy library (routine \begin{tt}numpy.fft.rfft()\end{tt}).
+You would then save the absolute values of the FFT data to file and display these on a screen.
+This task would allow you to develop the FFT analysis and the displays.
+The amount of work for this is similar to a checkpoint.
 
-While such an FFT analyser is simple to build and control, it has limitations. The sampling rate will be low (as studied in Checkpoint 3). There can be missing parts in the recorded samples (``data holes'') as the Raspberry-Pi is not a real-time computer. The Raspberry-Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
+While such an FFT analyser is simple to build and control, it has limitations.
+The sampling rate will be low (as studied in Checkpoint 3).
+There can be missing parts in the recorded samples (``data holes'') as the Raspberry Pi is not a real-time computer.
+The Raspberry Pi has a multitasking operating system, which can interrupt the data taking, especially if sampled at too large a rate.
 
 %\item Use the MCP3208 ADC chip, but control and read its output directly through the serial interface SPI using a Python library called \begin{tt}spidev\end{tt}, which is already installed on the Raspberry-Pi.
 %
@@ -54,10 +69,15 @@ While such an FFT analyser is simple to build and control, it has limitations. T
 % 
 %This method is much faster than \webiopi  and it is possible to record up to 5k samples per second, however real-time sampling is not possible and there can be holes in the data.
 
-\item	Use the Arduino, a real-time \microcontroller, which  is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals, 
-The Arduino is based on an 8-bit 16MHz chip ATmega328 and does not have an operating system by default, so it supports real-time computing, i.e. the program does not get interrupted. The Arduino also has a built-in 10-bit ADC. For this project, the Arduino is used as an ADC and a data buffer connected to the Raspberry-Pi and it will be made available pre-programmed. From your perspective the Arduino will behave as ``black box,'' i.e. an ADC with a buffer memory that can be accessed through an USB interface. (Note: If you are interested, you may familiarise yourself with Arduino-IDE package and upload the code, {\tt ADCforRPI4.ino},  available on  \url{https://github.com/fmuheim/DAH}. 
-You will need to write Python code that communicates with the Arduino using the \begin{tt}serial\end{tt} library.\\
+\item	Use the Arduino, a real-time \microcontroller, which is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals.
+The Arduino is based on an 8-bit 16MHz chip ATmega328 and does not have an operating system by default, so it supports real-time computing, i.e. the program does not get interrupted.
+The Arduino also has a built-in 10-bit ADC.
+For this project, the Arduino is used as an ADC and a data buffer connected to the Raspberry Pi and it will be made available pre-programmed.
+From your perspective the Arduino will behave as ``black box,'' i.e. an ADC with a buffer memory that can be accessed through an USB interface.
+(If you are interested, you may familiarise yourself with Arduino-IDE package and upload the code, {\tt ADCforRPI4.ino}, available at \url{https://github.com/bwynneHEP/DAH}.
+You will need to write Python code that communicates with the Arduino using the \begin{tt}serial\end{tt} library.
 
+\newpage
 \lstinputlisting{../scripts/project_B_b.py}
 
  The 8-bit resolution simplifies data transfer and processing, since each sample equals exactly one byte of data. In fact, 8 bits correspond to the effective resolution of the ADC at the largest supported sampling frequencies where the two least significant bits (of the 10-bit ADC) are essentially noise,
@@ -80,6 +100,7 @@ Performing an FFT analysis a data sample is straightforward, for example you can
 
 \end{enumerate}
 
+\newpage
 \input{dah-project-planning}
 
 \newpage
@@ -87,7 +108,9 @@ Performing an FFT analysis a data sample is straightforward, for example you can
 
 \subsection{Goals of project}
 
-You will develop and build a small synthesizer with which you will be able to play small tunes. This project builds upon the work carried out in checkpoint 4 where you worked with an I/O expander chip. With the synthesizer you will be able to play simple tunes, but there is scope for developing the synthesizer much further.
+You will construct a small audio synthesizer.
+This project builds upon the work carried out in checkpoint 4 where you worked with an I/O expander chip.
+With the synthesizer you will be able to play simple tunes, but there is scope for developing the synthesizer much further.
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
@@ -96,38 +119,37 @@ The projects have an open-ended aspect and are an opportunity where you can show
 
 For this project you will need the following items:
 \begin{itemize}
-\item Raspberry-Pi
-\item  Amplified Speakers
+\item Raspberry Pi
+\item Amplified Speakers
 \item MCP23S17 IO Expender
 \item 1K Resistors
 \item Pushbuttons
 \end{itemize}
-Some of this equipment will be located in the red box C. You will have to share some items between Tuesday and Thursday sessions. 
+Some of this equipment will be located in the red box C.
+You will have to share some items between Tuesday and Thursday sessions.
 
 
 \subsection{Building the synthesizer}
 
 The SPI I/O expander chip (MCP23S17) can be used in a very similar way to the I2C expander chip you used in checkpoint 4, so you can build upon this work.
-%For this project we recommend that you use the MCP23S17 chip, which is a 16 bit SPI expander.
-While the two expander chips are different devices, similar Python methods can be applied.% when using \webiopi.
+While the two expander chips are different devices, similar Python methods can be applied.
 Note that the MCP23S17 has specific input and output modes for the pins, which can be set with the \texttt{setInput} and \texttt{setOutput} methods.
 
 \lstinputlisting{../scripts/project_C_c.py}
 \vspace*{-0.5cm}
 
 {\bf NB:} The documentation for the MCP23S17 chip is a little confusing because it allows I2C-style addresses as well as SPI-style chip select (CS) signals.
-You can use multuple MCP23S17 devices with the same CS setting provided they have different hardware addresses, but if you want to include other SPI devices in the project they will need a separate CS as usual.
+You can use multiple MCP23S17 devices with the same CS setting provided they have different hardware addresses, but if you want to include other SPI devices in the project they will need a separate CS as usual.
  
 \begin{enumerate}
 \item Start your project using switch buttons to play sounds at first and then you can think about including additional forms of input (or output).
 Remember that you can use components from the checkpoints, as well as what is in the project box.
 
-\item You can base your project on the \begin{tt}PyGame\end{tt} package, which is already installed on the Raspberry-Pi.
+\item You can base your project on the \texttt{PyGame} package, which is already installed on the Raspberry Pi.
 You can find a more information on the following webpage: \url{https://www.pygame.org}.
-Here is an example of how to use this package as a synthesiser, playing a simple sine-wave note.\\
-
+Here is an example of how to use this package as a synthesiser, playing a simple sine-wave note:
 \lstinputlisting{../scripts/project_C_a.py}
-\vspace*{-0.5cm}
+%\vspace*{-0.5cm}
 \end{enumerate}
 
 Once you have set up the hardware, play a few notes and make sure you understand how the synthesizer works. In Appendix 1 of project C, shown below, you can find the frequencies for musical notes.
@@ -143,20 +165,21 @@ In reality the Raspberry Pi is producing multiple interleaving sounds, but we pe
 
 Polyphony requires that the synthesizer is able to detect two or more buttons being pressed at the same time.
 Capturing two or more buttons being pressed at once can be achieved by reading the I/O expander as a parallel bus instead of reading the state of each button in sequence.
-When using parallel or port reading, one should save the state of the port as a single variable.
-Each binary bit of this variable corresponds to the state of a single input button.
+Like the \texttt{portWrite} function you have seen before, \texttt{portRead} returns the state of all inputs as a single number.
+Each binary bit of this value corresponds to the state of a single input button.
 
 \item You could experiment with different wave forms.
 
-\item As well as synthesising your own sounds, you can use pre-recorded audio samples from a piano in \begin{tt}.wav\end{tt} format.
+\item As well as synthesising your own sounds, you can use pre-recorded audio samples from a piano in \texttt{.wav} format.
 
 You can download a compressed file with the audio samples (\texttt{CityPiano.tgz}) from the DAH DropBox page.
 This is a simplified version of a full set of samples available here: \url{http://bigcatinstruments.blogspot.com/2015/09/all-keyboard-instruments.html}
-The \begin{tt}PyGame\end{tt} package can play most \begin{tt}.wav\end{tt} format files in just the same way as your synthesised notes.
-Below an example is given of how to play two sounds at the same time. \\
+The \texttt{PyGame} package can play most \texttt{.wav} format files in just the same way as your synthesised notes.
+Below an example is given of how to play two sounds at the same time:
 
+\newpage
 \lstinputlisting{../scripts/project_C_b.py}
-\vspace*{-0.5cm}
+%\vspace*{-0.5cm}
 \end{enumerate}
 
 
@@ -170,13 +193,13 @@ Below an example is given of how to play two sounds at the same time. \\
  \end{center}
  
  
- \newpage
+\newpage
 \section{Project D: Building an Ultrasonic Range Finder}
 
 \subsection{Goals of project}
 
-You will develop and build an ultrasonic range finder. This device will use an ultrasound transducer as a distance sensor. 
-%The \webiopi framework, which was used during the checkpoints will be a part of this project. 
+You will develop and build an ultrasonic range finder.
+This device will use an ultrasound transducer as a distance sensor. 
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
@@ -184,39 +207,42 @@ The projects have an open-ended aspect and are an opportunity where you can show
 
 For this project you will need the following items:
 \begin{itemize}
-\item Raspberry-Pi
+\item Raspberry Pi
 \item Ultrasonic Transducer module HC-SR04
 \item 1 k$\Omega$ Resistor
 \item Loudspeakers
 \end{itemize}
-Some of this equipment will be located in the red box D. You will have to share some items between Tuesday and Thursday sessions. 
+Some of this equipment will be located in the red box D.
+You will have to share some items between Tuesday and Thursday sessions. 
 
 
 \subsection{Building the ultrasonic range finder}
  
 You will develop an ultrasonic range finder using a HC-SR04 Distance Sensor. 
-Start by connecting the HC-SR04 to the Raspberry-Pi, as shown in the Figure below. Test the circuit using the code examples, which are provided in Appendix 1 of project D below. 
-%You will need to make changes in your scripts  so that it will work within the \webiopi framework.
-You will need to make a few changes in your script  to get it to work.
+Start by connecting the HC-SR04 to the Raspberry Pi, as shown in the Figure below.
+Test the circuit using the code examples, which are provided in Appendix 1 of project D below. 
+You will need to make a few changes in your script to get it to work.
 
 \begin{center}                                        
  {\includegraphics[width=0.50\textwidth]{figs/hcsr04.png}}
  \end{center}
 
 
-Hints: The output of the HC-SR04 module is a logic level one of 5 V. The Raspberry-Pi works with 3.3V logic signals. A 1 k$\Omega$ resistor in series will limit the current in the circuit to prevent damaging the Raspberry Pi.
+{\bf Hint:} The output of the HC-SR04 module use a high logic level of 5\,V.
+The Raspberry Pi works with 3.3\,V logic signals.
+A 1\,k$\Omega$ resistor in series will limit the current in the circuit to prevent damaging the Raspberry Pi.
  
 \begin{enumerate}
-\item 	Work out how the HC-SR04 sensor operates. What are the ``Trig'' and ``Echo'' pins of the HC-SR04 module used for? Use the oscilloscope to capture these signals when running the code example. 
+\item Work out how the HC-SR04 sensor operates.
+What are the ``Trig'' and ``Echo'' pins of the HC-SR04 module used for?
+Use the oscilloscope to capture these signals when running the code example. 
 
 \item Use these data to explain in detail how the module works and how it is possible to measure distance using ultrasonic waves.
 
-%\item  Rewrite  your scripts using the  \webiopi instead of the \begin{tt}RPi\end{tt} framework.
-\item  Familiarise yourself with the  \begin{tt}RPi\end{tt} framework, see e.g. \\
-\url{https://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage}.\\
-Using the \begin{tt}RPi\end{tt} framework complete the function \begin{tt} def reading(sensor):\end{tt} in your script and test your circuit.
+\item Familiarise yourself with the \texttt{RPi} framework, see e.g. \url{https://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage}.
+Using the \texttt{RPi} framework complete the function \texttt{reading} in your script and test your circuit.
 
-\item What are the minimum and maximum distance that your Range Finder can measure? 
+\item What are the minimum and maximum distances that your range finder can measure? 
 \end{enumerate}
 
 \subsection{Applications using the ultrasonic range finder}
@@ -225,7 +251,10 @@ Now that you have a functioning ultrasonic range finder there are several possib
 
 \begin{enumerate}
 
-\item	Try to understand better the properties and limitations of your device. What are the minimum and maximum size of objects the range finder is able to detect? Play with reflecting surfaces of different areas and define the angular range (span of angles) within the range finder works? Is this approach suitable for large or small objects? Is there a relation between the distance and the size of the reflection area?
+\item	Try to understand better the properties and limitations of your device.
+What are the minimum and maximum size of objects the range finder is able to detect?
+Play with reflecting surfaces of different areas and define the angular range (span of angles) within the range finder works?
+Is this approach suitable for large or small objects? Is there a relation between the distance and the size of the reflection area?
 
 \item Develop an application of your choice. An example could be an electronic ``Car Parking Assistant'' where sounds are created and LEDs flash (or similar) if the sensor gets too close to an object.
 
@@ -233,15 +262,13 @@ Now that you have a functioning ultrasonic range finder there are several possib
 
 \end{enumerate}
 
-Note that the loudspeakers are power hungry, so they  should be connected  via USB to the 
-monitor.
+Note that the loudspeakers are powered over USB, but have a relatively high requirement, so should use the USB ports on the monitor rather than the Raspberry Pi.
 
-To play an audio file (sampled note) you can use an application such as \begin{tt}aplay\end{tt}. Below an example is given of how to play a note using a Python script.\\
-
+To play an audio file (sampled note) you can use an application such as \texttt{aplay}. Below an example is given of how to play a note using a Python script.
 \lstinputlisting{../scripts/project_D_a.py}
 \vspace*{-0.5cm}
 
-
+\newpage
 \input{dah-project-planning}
 
 
@@ -267,7 +294,7 @@ The projects have an open-ended aspect and are an opportunity where you can show
 
 For this project you will need the following items:
 \begin{itemize}
-\item Raspberry-Pi
+\item Raspberry Pi
 \item DC power supply
 \item Peltier thermoelectric device
 \item 2x temperature sensor S18B20
@@ -275,13 +302,14 @@ For this project you will need the following items:
 \item Heat sinks
 \item Beaker
 \end{itemize}
-Some of this equipment will be located in the red box E. You will have to share some items between Tuesday and Thursday sessions. 
+Some of this equipment will be located in the red box E.
+You will have to share some items between Tuesday and Thursday sessions. 
 
 
 \subsection{Building the refrigerator}
 
-You will need to build a circuit to supply power to the Peltier element as the Raspberry-Pi cannot supply enough current itself.
-You can use the power supplies available in the lab, to produce a DC voltage and control it using a power transistor connected to a GPIO pin on the Raspberry-Pi.
+You will need to build a circuit to supply power to the Peltier element as the Raspberry Pi cannot supply enough current itself.
+You can use the power supplies available in the lab to produce a DC voltage, and control it using a power transistor connected to a GPIO pin on the Raspberry Pi.
 Use a 1\,A, 1\,V supply for the Peltier.
 
 \begin{center}
@@ -295,11 +323,11 @@ Do not power the device for more than a few seconds without this heat sink, or y
 You may also need a heat sink for the transistor.
 
 The temperature of the liquid must be monitored, so you will need to find a way to get the 1-wire sensors near to it.
-You will be provided with a waterproof temperature sensor, with part number DS18B20, so you will need to adjust your code appropriately.% if reading it with \webiopi.
+You will be provided with a waterproof temperature sensor that can be suspended in the beaker.
 
 \subsection{Monitoring and controlling the temperature}
 
-Aim first to be able to precisely control the liquid at a few centigrade below room temperature before trying to find out how cold you can make the liquid.
+Aim first to be able to precisely control the liquid slightly below room temperature, rather than trying to find out how cold you can make the liquid.
 The Peltier device will take a long time to cool the liquid much below room temperature, so don't waste time waiting for this.
 
 During Checkpoint 5 you already learned how to read information from the 1-wire temperature sensors, but you should now consider this in more detail.
@@ -312,16 +340,19 @@ Your project should include a way of displaying the current temperature of the l
 You should also include a visual indication of the state of the Peltier, rather than just poking it to see if it feels cold.
 
 The circuit to power and control your Peltier device is simple, but you should think carefully about when your Python code should switch the cooling on and off.
-Rather than having a simple threshold temperature for turning the cooling on and off, you may want to use a hysteresis loop.
-Rapidly toggling power to the Peltier in an uncontrolled fashion is unlikely to give good performance.
+Rather than having a simple threshold temperature for turning the cooling on and off, you can try to keep the temperature stable at the target value.
+Toggling power to the Peltier in an uncontrolled fashion is unlikely to give good performance.
 
-You could enhance the scope of your project in the following ways.
+\newpage
+You could enhance the scope of your project in the following ways:
 \begin{enumerate}
 	\item Try varying the cooling power of your Peltier using pulse-width modulation.
 		Here you would use your Raspberry Pi GPIO pin to create a square wave to toggle the power transistor on and off.
 		You then adjust what percentage of time is spent in the on or off state: the `duty cycle.'
+    The \texttt{RPi} library that you used in the checkpoints has a function for pulse-width modulation.
 	\item Write an interface that allows the user to start and stop the temperature control programme, show the status and temperature of the Peltier, and change the temperature value of the thermostat.
-	\item Consider running the Peltier as a heating element. What changes are required to the sensor, the circuit and the control programs?
+	\item Consider running the Peltier as a heating element.
+    What changes are required to the sensor, the circuit and the control programs?
 \end{enumerate}
 
 \input{dah-project-planning}
@@ -333,73 +364,94 @@ You could enhance the scope of your project in the following ways.
 
 \subsection{Goals of project}
 
-You will use LHCb data on the invariant mass of particle candidates that you were introduced to during a checkpoint. You will analyse this in a much more sophisticated way and closer to the actual analysis performed leading to its publication. You will use the maximum likelihood process to fit different mass model shapes to the data. From this you will determine the parameters of the mass model for the three signal peaks, and their errors. You will start with a very simple Gaussian mass model. You will then improve this and use a more sophisticated model.
+You will use LHCb data on the invariant mass of particle candidates that you were introduced to during a checkpoint.
+You will analyse this in a much more sophisticated way, closer to the actual analysis performed leading to its publication.
+You will use the maximum likelihood process to fit different mass model shapes to the data.
+From this you will determine the parameters of the mass model for the three signal peaks, and their errors.
+You will start with a very simple Gaussian mass model.
+You will then improve this and use a more sophisticated model.
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
 \subsection{Equipment for project F1}
 
-Note: this is a data analysis project, which does not require use of the Raspberry Pi.
-This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
-You may also use your own laptop computer, but you will need to be able to install
-Python and Python packages on your own. 
-
+This is a data handling exercise and the Raspberry Pi is not required, but can still be used.
+You may find it faster to use the CPlab computers --- there are several available in the DAH laboratory.
+Alternatively you could use a personal laptop, but you will need to be able to install Python and Python packages on your own.
 
 \subsection{Detailed project description}
   
 You were previously introduced to the LHCb Upsilon data. 
-The LHCb experiment at the Large Hadron Collider at CERN has recorded a sample of muon pairs with invariant masses in the range of 8.5 to 11 GeV/$c^2$. Three clear peaks are observed in this mass spectrum. These correspond to the production of Upsilon mesons, which are bound states of a $b$ and a anti-$b$ quark. These states are known as the $\Upsilon \rm (1S)$, $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ mesons where the $\Upsilon \rm (1S)$ meson is the ground state and the $\Upsilon \rm (2S)$  and $\Upsilon \rm (3S)$  states are radial excitations (for LHCb paper, see {DOI: 10.1007/JHEP06(2013)064).}
+The LHCb experiment at the Large Hadron Collider at CERN has recorded a sample of muon pairs with invariant masses in the range of 8.5 to 11 GeV/$c^2$.
+Three clear peaks are observed in this mass spectrum.
+These correspond to the production of Upsilon mesons, which are bound states of a $b$ and a anti-$b$ quark.
+These states are known as the $\Upsilon \rm (1S)$, $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ mesons, where the $\Upsilon \rm (1S)$ meson is the ground state and the $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ states are radial excitations (for LHCb paper, see \href{https://link.springer.com/article/10.1007/JHEP06(2013)064}{DOI: 10.1007/JHEP06(2013)064}).
 
+During checkpoint 6, you performed some very simple ``peak finding.''
+In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
 
-During checkpoint 6, you performed some very simple ``peak finding.'' In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
-
-Download the files ups-15.bin, ups-15-small.bin and mc.bin   from the DAH Dropbox, 
+\newpage
+Download the files ups-15.bin, ups-15-small.bin and mc.bin from the DAH Dropbox.
 These files contain the data recorded by LHCb in 2015 and a subset with a factor 5 less data. 
 In addition, there is a file with simulated data (Monte Carlo).
-The files are written in binary format and contain five observables for a large number of muon pairs
+The files are written in binary format and contain five observables for a large number of muon pairs:
 \begin{itemize}
-\item  invariant mass of muon pair in   GeV/$c^2$;
-\item transverse momentum $p_\perp$ of muon pair in GeV/$c$;
-\item rapidity $\eta$ of muon pair;
-\item  momentum $p$ of muon pair in GeV/$c$;
-\item transverse momentum $p_{\perp,1}$ of first muon in GeV/$c$;
-\item transverse momentum $p_{\perp,2}$ of second muon in GeV/$c$.
+\item invariant mass of muon pair in GeV/$c^2$
+\item transverse momentum $p_\perp$ of muon pair in GeV/$c$
+\item rapidity $\eta$ of muon pair
+\item momentum $p$ of muon pair in GeV/$c$
+\item transverse momentum $p_{\perp,1}$ of first muon in GeV/$c$
+\item transverse momentum $p_{\perp,2}$ of second muon in GeV/$c$
 \end{itemize}
 
-Write a Python script that reads the data from this file, see below. Plot histograms of all six variables, choosing a reasonable bin width. Always label plots correctly with title and axes and save these to a file. 
+Write a Python script that reads the data from this file, see below.
+Plot histograms of all six variables, choosing a reasonable bin width.
+Always label plots correctly with title and axes and save these to a file. 
 
 \lstinputlisting{../scripts/project_F_a.py}
 \vspace*{-0.5cm}
 
 
 \begin{enumerate}
-\item Consider first the Upsilon(1S) ($\Upsilon \rm (1S)$) particle, which is the particle with the lowest mass, i.e. the left most  peak in the plot. Construct a composite probability density function (PDF) for the invariant mass of the muon pairs, which contains two components:
+\item Consider first the Upsilon(1S) ($\Upsilon \rm (1S)$) particle, which is the particle with the lowest mass, i.e. the left-most peak in the plot.
+Construct a composite probability density function (PDF) for the invariant mass of the muon pairs, which contains two components:
 \begin{itemize}
-\item A Gaussian shape to fit the  $\Upsilon \rm (1S)$ mass peak;
+\item A Gaussian shape to fit the $\Upsilon \rm (1S)$ mass peak
 \item A shallow falling exponential to fit the background shape of the mass spectrum underneath and around the peak.
 \end{itemize}
 
-\item	Use this PDF in a Maximum Likelihood fit to determine the parameters of the PDF. Note hat it is essential that the composite PDF remains normalised to 1 over the range of the fit.
+\item	Use this PDF in a Maximum Likelihood fit to determine the parameters of the PDF.
+Note that it is essential that the composite PDF remains normalised to 1 over the range of the fit.
 
-Determine the $\Upsilon \rm (1S)$  meson mass and yield, and all other parameters, and their and errors.
+Determine the $\Upsilon \rm (1S)$ meson mass and yield, and all other parameters, and their errors.
 
-You should be able to obtain the parameter errors directly from the minimization engine of your choice (scipy.optimize.minimise, scipy.optimise.curve\_fit, lmfit, see \url{https://lmfit.github.io/lmfit-py/} or Minuit). Depending on your choice you will be able to chose different minimising methods.
-It would be good to show that you understand these by obtaining them yourself from the parameters of the Gaussian signal fit - this is described in the data handling lectures.
+You should be able to obtain the parameter errors directly from the minimization engine of your choice (scipy.optimize.minimise, scipy.optimise.curve\_fit, lmfit, see \url{https://lmfit.github.io/lmfit-py/} or Minuit).
+Depending on your choice you will be able to chose different minimising methods.
+It would be good to show that you understand these by obtaining them yourself from the parameters of the Gaussian signal fit --- this is described in the data handling lectures.
 
 Plot the fitted signal shape on top of the data.
 
-\item Now consider the entire mass range, and perform a simultaneous fit for all three Upsilon peaks, and the underlying background. Again you should always report the parameter values, and their errors. Plot the fitted signal shape on top of the data.
+\item Now consider the entire mass range, and perform a simultaneous fit for all three Upsilon peaks, and the underlying background.
+Again you should always report the parameter values, and their errors.
+Plot the fitted signal shape on top of the data.
 
-\item The results so far probably look ``quite good'' by eye.  i.e. the signal shape plotted on top of the data probably looks like it fits quite well.  However this can be misleading when performing a precision measurement.  You should make a plot of what are called the ``residuals.'' A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin. Describe what you see.
+\item The results so far probably look quite good by eye, i.e. the signal shape plotted on top of the data probably looks like it fits well.
+However this can be misleading when performing a precision measurement.
+You should make a plot of what are called the ``residuals.''
+A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin.
+Describe what you see.
 
-\item There are several ways to enhance the scope of the project. For example, if the single Gaussian mass model does not fit the data perfectly, one can try other mass models, i.e. by using a signal PDF that goes beyond a single Gaussian function.  Examples are:
+\item There are several ways to enhance the scope of the project.
+For example, if the single Gaussian mass model does not fit the data perfectly, one can try other mass models, i.e. a signal PDF that goes beyond a single Gaussian function.
+Examples are:
 \begin{itemize}
 \item A PDF comprising a function which is the sum of two Gaussian functions (i.e. one narrow and one wide Gaussian function to fit a single Upsilon mass peak)
-\item A Crystal Ball function, which incorporates a non-Gaussian tail at the lower end of the mass peak. The functional shape is described elsewhere, e.g. see: \url{http://en.wikipedia.org/wiki/Crystal_Ball_function}. 
+\item A Crystal Ball function, which incorporates a non-Gaussian tail at the lower end of the mass peak.
+The functional shape is described elsewhere, e.g. see: \url{http://en.wikipedia.org/wiki/Crystal_Ball_function}. 
 \end{itemize}
 Implement one or both of these functions in your PDF. 
-First fit this PDF using the simulated Monte Carlo data. This allows you to see better
-how the additional parameters should improve the description of the tails of the signal peak.
+First fit this PDF using the simulated Monte Carlo data.
+This allows you to see better how the additional parameters should improve the description of the tails of the signal peak.
 Then fit the PDF to the LHCb data and see how much better they are at describing the data.
 Consider fixing some of the shape parameters from the fit to the Monte Carlo sample.
 
@@ -407,7 +459,9 @@ Consider fixing some of the shape parameters from the fit to the Monte Carlo sam
 Find out if you can improve the purity of your signal sample.
 The purity is defined as the ratio of signal events over all events in a region.
 
-\item As on open ended activity, you will see in the paper that the analysis is also done by dividing the data up into bins of transverse momentum (pT) and rapidity (eta). You can explore doing this analysis yourself. It is somewhat more complex as you have to think about which are common parameters (e.g. masses) and which are not (e.g. background fractions).
+\item As on open ended activity, you will see in the paper that the analysis is also done by dividing the data up into bins of transverse momentum ($p_\perp$) and rapidity ($\eta$).
+You can explore doing this analysis yourself.
+It is somewhat more complex as you have to think about which are common parameters (e.g. masses) and which are not (e.g. background fractions).
 
 \item Read the publication and see what is said about systematic errors.  Make a reasonable attempt at determining some systematic errors on the masses.
 
@@ -418,39 +472,37 @@ The purity is defined as the ratio of signal events over all events in a region.
  
  
 
-\begin{comment}
 \newpage
 \section{Project F2: Make Accurate Measurements of Particle Masses}
 
 \subsection{Goals of project}
 
-You will use LHCb data on the invariant mass of particle candidates that you were introduced to during a checkpoint. You will analyse this in a much more sophisticated way and closer to the actual analysis performed leading to its publication. You will use the maximum likelihood process to fit different mass model shapes to the data. From this you will determine the parameters of the mass model for the three signal peaks, and their errors. You will start with a very simple Gaussian mass model. You will then improve this and use a more sophisticated model.
+You will use LHCb data on the invariant mass of particle candidates that you were introduced to during a checkpoint.
+You will analyse this in a much more sophisticated way, closer to the actual analysis performed leading to its publication.
+You will use the maximum likelihood process to fit different mass model shapes to the data.
+From this you will determine the parameters of the mass model for the signal peaks, and their errors.
+You will start with a very simple Gaussian mass model.
+You will then improve this and use a more sophisticated model.
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
 \subsection{Equipment for project F2}
 
-Note: this is a data analysis project, which does not require use of the Raspberry Pi.
-This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
-You may also use your own laptop computer, but you will need to be able to install
-Python and Python packages on your own. 
-
+This is a data handling exercise and the Raspberry Pi is not required, but can still be used.
+You may find it faster to use the CPlab computers --- there are several available in the DAH laboratory.
+Alternatively you could use a personal laptop, but you will need to be able to install Python and Python packages on your own.
 
 \subsection{Detailed project description}
  
- You were previously introduced to the LHCb Upsilon data. In this
-project you will explore another LHCb dataset where a pair of
-oppositely charged kaons and a pion have been combined. Two clear
-peaks are observed in this mass spectrum corresponding to the $D_s^+$
-and $D^+$ mesons, see figure below % (Fig.~\ref{fig:dmass}). 
-For more information see: {DOI:10.1007/JHEP06(2013)065}. 
- 
-During checkpoint 6, you performed some very simple ``peak finding.'' In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
-
+You were previously introduced to the LHCb Upsilon data.
+In this project you will explore another LHCb dataset collected in 2011 where a pair of oppositely charged kaons and a pion have been combined.
+Two clear peaks are observed in this mass spectrum corresponding to the $D_s^+$ (quark content $c\overline{s}$) and $D^+$ (quark content $c\overline{d}$) mesons (charge conjugation is implied), see figure below %. (Fig.~\ref{fig:dmass}).
+For more information see: {DOI:10.1007/JHEP06(2013)065}.
 %
 %\begin{figure}[htb!]
+%\vspace*{-1.0cm}
 \begin{center}
-\includegraphics[width=0.75\textwidth]{figs/KKpi.pdf}\\
+\includegraphics[width=0.5\textwidth]{figs/KKpi.pdf}\\
 %\caption
 {\small $K^{+}K^{-}\pi^{+}$ invariant mass distribution.}
 %\label{fig:dmass}
@@ -458,55 +510,68 @@ During checkpoint 6, you performed some very simple ``peak finding.'' In this pr
 %\end{figure}
 %
 
+\newpage
+Download the files kkp.bin and kkpp.bin files from the DAH Dropbox,
+These files contain the data recorded by LHCb in 2011 for $D_{(s)}^+$ and $D^0$ decays respectively.
+Focus on the $D_{(s)}^+$ data file (kkp.bin):
+The files are written in binary format and contain seven observables
+\begin{itemize}
+\item invariant mass of $K^{+}K^{-}\pi^{+}$ candidate in MeV/$c^2$
+\item invariant mass of kaon pair in  MeV/$c^2$
+\item transverse momentum of $K^{+}K^{-}\pi^{+}$ candidate in GeV/$c$
+\item rapidity $\eta$ of $K^{+}K^{-}\pi^{+}$ candidate
+\item minimum tranverse momentum of the three tracks in the $K^{+}K^{-}\pi^{+}$ candidate
+\item electric charge of the candidate
+\item polarity of the LHCb magnetic field
+\end{itemize}
 
+Write a Python script that reads the data from this file, see below.
+\lstinputlisting{../scripts/project_F_b.py}
+
+During checkpoint 6, you performed some very simple ``peak finding.''
+In this project you are going to do the analysis much like it would actually be carried out in a particle physics experiment.
+
+\newpage
 \begin{enumerate}
 
-\item Consider first the $D^+$ peak which is the particle with the lowest
-mass, i.e. the left most peak in the plot. Construct a composite probability density
-function (PDF) for the invariant mass of the muon pairs, which
-contains two components : 
+\item Consider first the $D^+$ peak which is the particle with the lowest mass, i.e. the left most peak in the plot.
+Construct a composite probability density function (PDF) for the invariant mass of the muon pairs, which contains two components:
 \begin{itemize}
-\item A Gaussian shape to fit the  $D^+$ mass peak;
+\item A Gaussian shape to fit the $D^+$ mass peak;
 \item A shallow falling exponential to fit the background shape of the mass spectrum underneath and around the peak.
 \end{itemize}
 
-\item	Use this PDF in a Maximum Likelihood fit to determine the parameters of the PDF. Note hat it is essential that the composite PDF remains normalised to 1 over the range of the fit.
+\item	Use this PDF in a Maximum Likelihood fit to determine the parameters of the PDF.
+Note that it is essential that the composite PDF remains normalised to 1 over the range of the fit.
 
-Determine the $D^+$  meson mass and yield, and all other parameters, and their and errors.
+Determine the $D^+$ meson mass and yield, and all other parameters, and their errors.
 
-You should be able to obtain the parameter errors directly from the minimization engine of your choice (scipy.optimize.minimise, scipy.optimise.curve\_fit, lmfit, see \url{https://lmfit.github.io/lmfit-py/} or Minuit). Depending on your choice you will be able to chose different minimising methods.
-It would be good to show that you understand these by obtaining them yourself from the parameters of the Gaussian signal fit - this is described in the data handling lectures.
+You should be able to obtain the parameter errors directly from the minimization engine of your choice (scipy.optimize.minimise, scipy.optimise.curve\_fit, lmfit, see \url{https://lmfit.github.io/lmfit-py/} or Minuit).
+Depending on your choice you will be able to chose different minimising methods.
+It would be good to show that you understand these by obtaining them yourself from the parameters of the Gaussian signal fit --- this is described in the data handling lectures.
 
 Plot the fitted signal shape on top of the data.
 
-\item Now consider the entire mass range, and perform a simultaneous fit for both
-peaks, and the underlying background. Again you should always report the parameter
-values, and their errors. Plot the fitted signal shape on top of the data.
-\item The results so far probably look ``quite good'' by eye. i.e. the signal shape plotted on
-top of the data probably looks like it fits quite well. However this can be misleading
-when performing a precision measurement. You should make a plot of what are called
-the ``residuals.'' A residual is the difference between the data in the binned histogram
-and the best-fit mass model value for the centre of that bin. Describe what you see.
-\item There are several ways to enhance the scope of the project.
+\item Now consider the entire mass range, and perform a simultaneous fit for both peaks, and the underlying background.
+Again you should always report the parameter values, and their errors.
+Plot the fitted signal shape on top of the data.
+\item The results so far probably look quite good by eye, i.e. the signal shape plotted on top of the data probably looks like it fits well.
+However this can be misleading when performing a precision measurement.
+You should make a plot of what are called the ``residuals.''
+A residual is the difference between the data in the binned histogram and the best-fit mass model value for the centre of that bin.
+Describe what you see.
 
+\item There are several ways to enhance the scope of the project.
 \begin{itemize} 
-\item For example, if the single
-Gaussian mass model does not fit the data perfectly, one can try other mass models,
-i.e. by using a signal PDF that goes beyond a single Gaussian
-function. One example: is a PDF comprising a function which is the sum of two Gaussian functions (i.e. one
-narrow and one wide Gaussian function to fit a single D meson
-peak. Alternatively try a Crystal Ball function, which incorporates a non-Gaussian tail at the lower end of
-the mass peak. The functional shape is described elsewhere, e.g. see:
-\begin{verbatim}
-https://en.wikipedia.org/wiki/Crystal_Ball_function 
-\end{verbatim} 
-You could implement each of these functions in your PDF and see how much better
-they are at describing the data.
-\item Read the publication and see what is said about systematic errors. Make a reasonable
-attempt at determining some systematic errors on the masses.
+\item If the single Gaussian mass model does not fit the data perfectly, one can try other mass models, i.e. a signal PDF that goes beyond a single Gaussian function.
+One example is a PDF comprising a function which is the sum of two Gaussian functions (i.e. one narrow and one wide Gaussian function to fit a single D meson peak).
+Alternatively try a Crystal Ball function, which incorporates a non-Gaussian tail at the lower end of the mass peak.
+The functional shape is described elsewhere, e.g. see: \url{https://en.wikipedia.org/wiki/Crystal_Ball_function}.
+You could implement each of these functions in your PDF and see how much better they are at describing the data.
+\item Read the publication and see what is said about systematic errors.
+Make a reasonable attempt at determining some systematic errors on the masses.
 \item Compare your results to the PDG and previous measurements.
-\item Study how the mass and the width of the peak (the resolution)
-  depends on the transverse momentum (pt) and rapidity (eta).
+\item Study how the mass and the width of the peak (the resolution) depends on the transverse momentum ($p_\perp$) and rapidity ($\eta$).
 \end{itemize}
 
 
@@ -516,6 +581,8 @@ attempt at determining some systematic errors on the masses.
 \input{dah-project-planning} 
  
 
+% NOTE COMMENTED OTHER LHCb PROJECTS
+\begin{comment}
 
 \newpage
 \section{Project F3: Make Accurate Measurements of Particle Masses}
@@ -528,11 +595,9 @@ The projects have an open-ended aspect and are an opportunity where you can show
 
 \subsection{Equipment for project F3}
 
-Note: this is a data analysis project, which does not require use of the Raspberry Pi.
-This project is best carried out using the Physics CPlab computers. No other equipment is needed.  There is a CPlab computer available on every desk in the DAH laboratory.
-You may also use your own laptop computer, but you will need to be able to install
-Python and Python packages on your own. 
-
+This is a data handling exercise and the Raspberry Pi is not required, but can still be used.
+You may find it faster to use the CPlab computers --- there are several available in the DAH laboratory.
+Alternatively you could use a personal laptop, but you will need to be able to install Python and Python packages on your own.
 
 \subsection{Detailed project description}
 
@@ -626,6 +691,7 @@ attempt at determining some systematic errors on the masses.
 
 \input{dah-project-planning} 
 \end{comment}
+% END COMMENT BLOCK FOR LHCb projects
 
 \newpage
 \section{Project G: Building a Remote Sensing System}
@@ -633,10 +699,8 @@ attempt at determining some systematic errors on the masses.
 \subsection{Goals of project}
 
 You will develop a remote sensing system, similar to a weather station.
-A WiFi \microcontroller will be used to acquire temperature and humidity data
-and publish these on a embedded web server. You will use the Raspberry-Pi to
-download these data and build a monitoring system.
-
+A WiFi \microcontroller will be used to acquire temperature and humidity data and publish these on a embedded web server.
+You will use the Raspberry Pi to download these data and build a monitoring system.
 
 The projects have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 
@@ -645,11 +709,11 @@ The projects have an open-ended aspect and are an opportunity where you can show
 
 For this project you will need the following items:
 \begin{itemize}
-\item Raspberry-Pi
-\item Adafruit HUZZAH ESP8266 WiFi  \microcontroller
+\item Raspberry Pi
+\item Adafruit HUZZAH ESP8266 WiFi \microcontroller
 \item DHT22 Temperature Humidity Sensor 
 \item DC power supply
-\item USB  to TTL UART 6PIN CP2102 Module Serial Converter
+\item USB to TTL UART 6PIN CP2102 Module Serial Converter
 \item Adafruit RGB 16x2 LCD and Keypad Kit 
 %\item ADAFRUIT INDUSTRIES  1112  STACKING HEADER
 %\item ADAFRUIT INDUSTRIES  914  PI COBBLER BREAKOUT KIT
@@ -657,22 +721,19 @@ For this project you will need the following items:
 \item WiFi hotspot 
 %\item USB to WiFi adapter Wi-PI
 \end{itemize}
-Some of this equipment will be located in the red box G. You will have to share some items between Tuesday and Thursday sessions. 
+Some of this equipment will be located in the red box G.
+You will have to share some items between Tuesday and Thursday sessions. 
 
 
 \subsection{Building the Remote Sensing System}
 
 You will develop a remote sensing system, similar to a weather station.
-For this you need to put together different elements, including 
-connecting a temperature and humidity sensor to a \microcontroller, 
-programming the \microcontroller,
-connecting an LCD display to the Raspberry-Pi,
-and remotely connecting the sensing system to the Raspberry-Pi via
-a WiFi hotspot. It is suggested that you familiarise yourself with all the components
-by consulting the corresponding web pages and reading their  technical specifications.
-A \microcontroller is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals,  so it is more limited than a 
-Raspberry-Pi. Here we will use the Adafruit HUZZAH ESP8266 WiFi  \microcontroller,
-see \url{https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview}.
+For this you need to put together different elements, including connecting a temperature and humidity sensor to a \microcontroller, programming the \microcontroller,
+connecting an LCD display to the Raspberry Pi, and remotely connecting the sensing system to the Raspberry Pi via a WiFi hotspot.
+It is suggested that you familiarise yourself with all the components
+by consulting the corresponding web pages and reading their technical specifications.
+A \microcontroller is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals, so it is more limited than a Raspberry Pi.
+Here we will use the Adafruit HUZZAH ESP8266 WiFi \microcontroller, see \url{https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview}.
 
 \begin{enumerate}
 
@@ -680,54 +741,45 @@ see \url{https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/overview}.
 Use a DC power supply to provide the +5V. 
 Please note that it is always recommended to switch off the power supply when connecting devices or changing the wiring.
 Connect the 3.3V output and GND to the rails on the breakout board. 
-Then use the USB  to Serial cable - Receive, Transmit and Ground Lines (Rx,TX, GND) -
-to connect the ESP8266 with to the Windows PC, 
-located on the desk in the right-hand corner of the DAH laboratory. 
-When connected, reset  theESP8266 by  pushing the
-reset button while holding the GIPO0 button. 
-This will make the \microcontroller ready to boot 
-and a dimmed red LED will show.
+Then use the USB to Serial cable --- Receive, Transmit and Ground Lines (Rx, TX, GND) --- to connect the ESP8266 to a Windows PC, located in the DAH laboratory.
+When connected, reset the ESP8266 by pushing the reset button while holding the GPIO0 button. 
+This will make the \microcontroller ready to boot and a dimmed red LED will show.
 
-\item To program the  ESP8266  you need to start the Arduino-IDE package, 
-which is installed on the Windows PC. Using the instructions on
-\url{https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide},
-go to Arduino $\rightarrow$ File $\rightarrow$ Preferences and copy the following link into
-the Additional Board Manager URLs field: 
-\hspace*{5mm} {\tt http://arduino.esp8266.com/stable/package\_esp8266com\_index.json}\\
-Then you invoke  the Board Manager (Tools $\rightarrow$ Board $\rightarrow$ Boards Manager),
-search for say ``ESP'' and install ``esp8266 by ESP8266 Community.''
-If successful, the  ESP8266 should appear under Tools $\rightarrow$ Board. 
-Check that the CPU Frequency is set correctly (80 MHz) on the \microcontroller
-and set upload baud rate (115200)  and the matching port of your USB to serial cable (e.g. COM4).
+\item To program the ESP8266 you need to start the Arduino-IDE package, which is installed on the Windows PC.
+Using the instructions at \url{https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide}, go to Arduino $\rightarrow$ File $\rightarrow$ Preferences and copy the following link into
+the Additional Board Manager URLs field: \url{http://arduino.esp8266.com/stable/package\_esp8266com\_index.json}.
+Then you invoke the Board Manager (Tools $\rightarrow$ Board $\rightarrow$ Boards Manager), search for ``ESP'' and install ``esp8266 by ESP8266 Community.''
+If successful, the ESP8266 should appear under Tools $\rightarrow$ Board.
+Check that the CPU Frequency is set correctly (80 MHz) on the \microcontroller and set upload baud rate (115200) and the matching port of your USB to serial cable (e.g. COM4).
 
 In addition you need to install two libraries.
-Use the library manager (Sketch $\rightarrow$  Include Libraries $\rightarrow$ Library Manager), first  search for  say ``Adafruit Unified'' and install ``Adafruit Unified Sensor library by Adafruit'' then search for say ``DHT'' and install ``DHT sensor library by Adafruit.''
+Use the library manager (Sketch $\rightarrow$ Include Libraries $\rightarrow$ Library Manager), first search for ``Adafruit Unified'' and install ``Adafruit Unified Sensor library by Adafruit'' then search for ``DHT'' and install ``DHT sensor library by Adafruit.''
 %There is one more step. You need to replace the file {\tt libm.a} from the following path,\\
 %\hspace*{5mm}{\tt C:$\backslash$Users$\backslash<$username$>\backslash$AppData$\backslash%$Roaming$\backslash$Arduino15$\backslash$packages$\backslash$esp8266$\backslash$tools\\
 %\hspace*{5mm}$\backslash$xtensa-lx106-elf-gcc$\backslash$1.20.0-26-gb404fb9$\backslash$xtensa-lx106-elf$\backslash$lib}\\ with a file with the same name, available from  \url{https://github.com/fmuheim/DAH}. 
 
 
-\item As a first  programming exercise, perform the ``Blink Test.'' Consult the instructions on
-{\tt .../using-arduino-ide}.
+\item As a first programming exercise, perform the ``Blink Test.''
+Consult the instructions on {\tt .../using-arduino-ide}.
 Copy the code into an Arduino IDE sketch, compile the code (Sketch $\rightarrow$ Verify / Compile) and upload ($\Rightarrow$) to the \microcontroller. 
 The sketch will start immediately - you'll see the LED blinking. Hooray!
 
-\item The next step is to connect the temperature and humidity sensor DHT22, see \url{http://www.adafruit.com/products/385}, to the \microcontroller. The DHT22 requires  three lines (3.3V, GND and data). Use GPIO \#2 as serial input on the ESP8266. Remember to switch off the power supply during this process.
-
+\item The next step is to connect the temperature and humidity sensor DHT22, see \url{http://www.adafruit.com/products/385}, to the \microcontroller.
+The DHT22 requires three lines (3.3V, GND and data).
+Use GPIO2 as serial input on the ESP8266.
+Remember to switch off the power supply during this process.
 
 \item You are now ready to program the temperature and humidity web server. 
-Download the example code into the Arduino-IDE application, using the instructions from \url{https://learn.adafruit.com/esp8266-temperature-slash-humidity-webserver/code}. \\
+Download the example code into the Arduino-IDE application, using the instructions from \url{https://learn.adafruit.com/esp8266-temperature-slash-humidity-webserver/code}.
 You will need to change this code by adding the name and password of the WiFi hotspot.
 %
 \lstinputlisting{../scripts/wifi.ino}
 %
-Compile the code (Sketch $\rightarrow$ Verify / Compile) and upload it
-to the \microcontroller.  Recall to put first the \microcontroller ready into boot state.
+Compile the code (Sketch $\rightarrow$ Verify / Compile) and upload it to the \microcontroller.
+Remember you must first put the \microcontroller into the ready to boot state.
 
-\item In order to connect the ESP8266 \microcontroller to the WiFi hotspot, which  is located on the desk in the left corner of the laboratory, switch on the WiFi hotspot, if necessary, push the reset button on the \microcontroller and 
-open a Serial Monitor on the  Arduino-IDE  ($\rightarrow$ Tools  $\rightarrow$ Serial monitor).
-The ESP8266 \& DHT22 sensor system should start to work 
-and you  should  obtain the IP address of the HTTP server, see:
+\item In order to connect the ESP8266 \microcontroller to the WiFi hotspot, which is located on the desk in the corner of the laboratory, switch on the WiFi hotspot (if necessary), push the reset button on the \microcontroller and open a Serial Monitor on the Arduino-IDE  ($\rightarrow$ Tools  $\rightarrow$ Serial monitor).
+The ESP8266 \& DHT22 sensor system should start to work and you  should  obtain the IP address of the HTTP server, see:
 \begin{verbatim}
     Working to connect ................................................................................................
 
@@ -736,57 +788,50 @@ and you  should  obtain the IP address of the HTTP server, see:
     HTTP server  started
 \end{verbatim}
 
-\item The final step is to read the DHT22 \& ESP8266 remotely 
-with the on-board WiFi adapter of  the Raspberry-Pi. To enable WiFi on the Raspberry-Pi,
-execute the following command:
+\item The final step is to read the DHT22 \& ESP8266 remotely with the on-board WiFi adapter of the Raspberry Pi.
+To enable WiFi on the Raspberry Pi, execute the following command:
 %
 \begin{verbatim}
     studentnn@dahpimm  ~ $ wpa_cli enable wlan0 
 \end{verbatim}
 %
-   Check the network connection and select the WiFi hotspot. You might have to type in the password. Using the Chromium web browser, you can now read the sensor by connecting to the correct IP address, e.g. {\tt http://192.168.1.2}.
-Find out how to read temperature and humidity from the DHT22 Adafruit webpage, 
-\url{https://learn.adafruit.com/esp8266-temperature-slash-humidity-webserver/using-the-webserver}.
+Check the network connection and select the WiFi hotspot.
+You might have to type in the password.
+Using the Chromium web browser, you can now read the sensor by connecting to the correct IP address, e.g. {\tt http://192.168.1.2}.
+Find out how to read temperature and humidity from the DHT22 Adafruit webpage, \url{https://learn.adafruit.com/esp8266-temperature-slash-humidity-webserver/using-the-webserver}.
 
  
 \end{enumerate}
 
-\subsection{Using the  Remote Sensing System}
+\subsection{Using the Remote Sensing System}
 
-Reading temperature and humidity using a web browser is 
-straightforward, but you want to go beyond single measurements.
-Write a Python script which samples a series of measurements
-and displays these. For this you need to parse the web server data.
-Use the instructions at
-%\url{http://www.diveintopython.net/html_processing/extracting_data.html} 
-% \url{http://stackoverflow.com/questions/2792650/python3-error-import-error-no-module-name-urllib2}
-https://docs.python.org/3/howto/urllib2.html
-to write a script that will regularly read the temperature and humidity from
-the remote sensor and print the data onto the screen and/or file. What would be a reasonable
-update frequency? Further possible applications could include the following:
+Reading temperature and humidity using a web browser is straightforward, but you want to go beyond single measurements.
+Write a Python script which samples a series of measurements and displays them.
+For this you need to parse the web server data.
+Use the instructions at \url{https://docs.python.org/3/howto/urllib2.html} to write a script that will regularly read the temperature and humidity from the remote sensor and print the data onto the screen and/or file.
+What would be a reasonable update frequency?
+Further possible applications could include the following:
 
 \begin{enumerate}
 
-\item Write a  well structured Python script in which reading the temperature and humidity sensor are
-functions or classes.  Convert temperature values from Fahrenheit into Celsius.
+\item Write a well-structured Python script in which reading the temperature and humidity sensor are functions or classes.
+Convert temperature values from Fahrenheit into Celsius.
 
 \item Write a script which displays an animated series of measurements in real time.
-Use a hot air-blower/hair-dryer to vary the temperature. 
-Avoid applying the heat-source for too long to prevent the DHT22 from starting to melt.
-Plot the temperature versus humidity 
-and explain what you observe.
+Use a hot air-blower/hair-dryer to vary the temperature.
+Avoid applying the heat-source for too long to prevent the DHT22 from starting to melt!
+Plot the temperature versus humidity and explain what you observe.
  
-\item Display the temperature and humidity on an  LCD display. 
-Connect the LCD display to top of the Raspberry-Pi. 
-Make sure that you use the provided GPIO port Extender plug to keep the LCD board from touching the  USB and Ethernet ports of the Raspberry-Pi. 
-Download the Python script {\tt  char\_lcd\_plate.py} from  \url{https://github.com/fmuheim/DAH}. Run this script to understand how to program the LCD display. Consulting the instructions at \\
-\url{https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/usage}, 
-write a Python script which regularly reads  and updates temperature (in Celsius) and humidity 
-on the LCD display.
+\item Display the temperature and humidity on an LCD display. 
+Connect the LCD display to the Raspberry Pi. 
+Make sure that you use the provided GPIO port Extender plug to keep the LCD board from touching the USB and Ethernet ports of the Raspberry Pi.
+Download the Python script \texttt{char\_lcd\_plate.py} from \url{https://github.com/bwynneHEP/DAH}.
+Run this script to understand how to program the LCD display.
+Consulting the instructions at \url{https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/python-usage}, write a Python script which regularly reads and updates temperature and humidity on the LCD display.
 
 \end{enumerate}
 
-
+% COMMENTED
 \begin{comment}
 \begin{verbatim}
 
@@ -875,36 +920,35 @@ use hairdryer
 
 \end{verbatim}
 \end{comment}
+% END COMMENT
 
 \input{dah-project-planning}
-
 
 \newpage
 \section{Project X: Develop a Project or Suggest Your Own Project}
 
 \subsection{Goals of project}
 
-We have a few possible projects where the project descriptions and goals are not advanced enough to be included in the list of projects A to G, see the list below. If you are interested in one of these, please let us know. In addition, if you have an idea of what you want to do with the Raspberry-Pi, please tell us and we will discuss it. Please note that we will have to make a decision if your own project or one from the list below is feasible within the time scale of the DAH course.
+We have a few possible projects where the project descriptions and goals are not advanced enough to be included in the list of projects A to G, see the list below.
+If you are interested in one of these, please let us know.
+In addition, if you have an idea of what you want to do with the Raspberry Pi, please tell us and we will discuss it.
+Please note that we will have to make a decision if your own project or one from the list below is feasible within the time scale of the DAH course.
 
 
 \subsection{List of possible projects}
 
-We give here a list of projects using the Raspberry-Pi and/or the Arduino, where more development work is required and little or no project description exists. 
+We give here a list of projects using the Raspberry Pi and/or the Arduino, where more development work is required and little or no project description exists. 
 
 \begin{itemize}
-\item Building an oscilloscope using the Arduino micro-controller as an ADC and the Raspberry-Pi as the DAQ to display waveforms.
+\item Building an oscilloscope using the Arduino \microcontroller as an ADC and the Raspberry Pi as the DAQ to display waveforms.
 \item Building a motion sensor using an accelerometer connected to an ADC and read out by the Raspberry Pi.
-\item Build a CCTV-like imaging capturing triggered by a motions sensor, for info see 
-\url{http://www.raspberrypi.org/learning/python-picamera-setup/}.
-\item Control switches, LEDs and relays using the PiFace Digital expansion boards, see 
-\url{http://www.piface.org.uk/products/piface_digital/}.
-\item Controlling a toy train set-up in the laboratory, for info see the following web link: 
-\url{http://www.mathworks.co.uk/company/newsletters/articles/adding-fun-to-first-year-computer-programming-classes-with-matlab-arduino-microcontrollers-and-model-trains.html?nocookie=true}.
+\item Build a CCTV-like imaging capturing triggered by a motions sensor, for info see \url{http://www.raspberrypi.org/learning/python-picamera-setup/}.
+\item Control switches, LEDs and relays using the PiFace Digital expansion boards, see \url{http://www.piface.org.uk/products/piface_digital/}.
+\item Controlling a toy train set-up in the laboratory, for info see the following web link: \url{http://www.mathworks.co.uk/company/newsletters/articles/adding-fun-to-first-year-computer-programming-classes-with-matlab-arduino-microcontrollers-and-model-trains.html}.
 You will need to bring your own toy train set-up.
 \item Suggest your own project.
 \end{itemize}
 
 \input{dah-project-planning}
 
- 
 

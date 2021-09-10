@@ -1,6 +1,6 @@
 # Pylab makes graph plotting very easy:
 import pylab
 
-# Make a histogram with NumberOfBins bins 
-# in the range binMinimum to binMaximum
-pylab.hist( someData, bins=NumberOfBins, range=[binMinimum, binMaximum] )
+# Make a histogram with NBins bins 
+# in the range Min to Max
+pylab.hist( someData, bins=NBins, range=[Min, Max] )

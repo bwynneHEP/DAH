@@ -15,26 +15,26 @@ There will be an introductory lecture online on Monday 20th September 2021.
 The laboratory sessions will take place on Tuesday and Thursday afternoons from 14:10 to 17:10 --- you need to attend one of these sessions per week.
 Timetabling will automatically allocate one of the afternoons for you.
 Laboratory work commences in week 1 (Tuesday 21st or Thursday 23rd September 2021) and finishes at the end of week 10 (Tuesday 23rd or Thursday 25th November 2021).
-The laboratory sessions will be held in JCMB 3201, 3301, and 3307.
+The laboratory sessions will be held in JCMB 3201 and 3301.
 Please go to your allocated room, and use the same bench space throughout the course.
 On the course Learn page you will find Risk Assessment information regarding use of the labs: please read this and use the electronic form to indicate that you have done so.
 
-After all checkpoint work is finished (end of week 6) there will be a data-analysis project.
+After all checkpoint work is finished (end of week 6) there will be a more open-ended project.
 
 \newpage
 \section{Syllabus}
 
 The outline syllabus is as follows:
 \begin{itemize}
-\item Analogue signal processing. %Treatment of noise. Filtering. Buffering using sample and hold;
+\item Analogue signal processing. Treatment of noise. Filtering. Buffering using sample and hold;
 \item Analogue to digital conversion; sampling rates; characteristics \& errors
 \item Digital to analogue signal conversion
 \item Communication protocols (Bus standards) and general Input/Output (I/O)
-%\item Digital signal processing. Triggering. Fourier transforms
-\item Computer data acquisition using a Raspberry Pi and Python %Arduino and Python;
+\item Digital signal processing. Triggering. Fourier transforms
+\item Computer data acquisition using a Raspberry Pi (or Arduino) and Python
 \item Advanced data analysis; multi-parameter likelihood fits
-%\item Practical examples, e.g. temperature sensors, ultrasound sensors, FFT spectrum analyser, synthesizer, digital signal generators, motion sensors, remote sensing, image processing, with CCDs.
-\item Practical examples, e.g. temperature sensors, digital signal generators, light sensors
+\item Practical examples, e.g. temperature sensors, ultrasound sensors, FFT spectrum analysis, synthesizer, digital signal generators, light sensors, remote sensing.%, motion sensors, image processing, with CCDs.
+%\item Practical examples, e.g. temperature sensors, digital signal generators, light sensors
 \end{itemize}
 
 \section{Learning Outcomes}
@@ -54,7 +54,8 @@ On completion of this course, the student will be able to:
 The laboratory sessions of the DAH course will take place in JCMB 3301 (and nearby rooms) on Tuesday and Thursday afternoons from 14:10 to 17:10.
 You will need to attend one of these sessions.
 Timetabling will automatically allocate either Tuesday or Thursday for you.
-%In the laboratory you will work in pairs, so you will need to choose a partner.
+In the laboratory you will work in pairs, so you will need to choose a partner.
+If you are uncomfortable working with a partner you can attempt the material on your own, but you may find that there is too much to do: you will not be allowed extra time in the lab.
 
 The laboratory work consists of checkpoints and projects, which are described in detail in Chapters~\ref{sec:checkpoints} and~\ref{sec:projects}.
 %The laboratory work consists of checkpoints, which are described in detail in Chapter~\ref{sec:checkpoints}.
@@ -63,22 +64,22 @@ A manual will be provided.
 To control the Raspberry Pi you will need to write Python code.
 Example Python scripts and code snippets will be provided in this document and on github, see \url{https://github.com/bwynneHEP/DAH}. 
 
-During weeks 1 to 6 of the DAH course you will need to complete five checkpoints. %six checkpoints.
+During weeks 1 to 6 of the DAH course you will need to complete six checkpoints.
 In each checkpoint you will learn a specific aspect of data acquisition or data handling and complete a prescribed set of tasks.
 %You will work in pairs during the checkpoints.
-%Each pair will have their own set of kit, however the Raspberry Pis will be shared between the Tuesday and Thursday afternoon sessions.
-Every student will have their own set of kit, however the Raspberry Pis will be shared between the Tuesday and Thursday afternoon sessions.
-%Each pair will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
-Each student will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
-The boxes should be labelled with your name.
+Each pair of students will have their own set of kit, however the Raspberry Pis will be shared between the Tuesday and Thursday afternoon sessions.
+%Every student will have their own set of kit, however the Raspberry Pis will be shared between the Tuesday and Thursday afternoon sessions.
+Each pair will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
+%Each student will be given a yellow box with the required kit in which you can preserve your work for use in the following week.
+The boxes should be labelled with your names.
 
 You should maintain a clear record of your work in a laboratory notebook as you work through the checkpoints.
 This must include diagrams of the circuits used.
 Python code written on the Raspberry Pi must include explanatory comments. %, and at each check point you need to demonstrate that your code compiles and runs correctly.
-%Each partner will need to maintain their own notebook to demonstrate that a checkpoint has been completed.
+Each partner will need to maintain their own notebook to demonstrate that a checkpoint has been completed.
 
 For each checkpoint you will use Learn to submit answers to the questions in this booklet, as well as providing any code or results that are required.
-%If you are working in pairs you will naturally share results and Python code but you should each provide a separate submission in Learn for the checkpoints, answering any questions independently.
+When you are working in pairs you will naturally share results and Python code but you should each provide a separate submission in Learn for the checkpoints, answering any questions independently.
 Ensure that you have all data and other results (e.g. photographs of equipment) prepared before you leave the lab.
 
 \section{Projects}
@@ -86,22 +87,23 @@ Ensure that you have all data and other results (e.g. photographs of equipment) 
 In weeks 7 to 11 of the DAH course you will carry out a project during the laboratory sessions.
 You should continue to attend during the same afternoon as for the checkpoints.
 The projects will build upon what you have learned during the checkpoints, but you will also encounter new material.
-%While the checkpoints concentrated on specific data acquisition techniques and data handling methods the projects will allow you to progress towards building a small DAQ and/or data analysis system.
-While the checkpoints had you collect and analyse small datasets with equipment in the laboratory, for the project you will perform more complex analysis of a large, pre-recorded dataset produced by the LHCb experiment at CERN.
+While the checkpoints concentrated on specific data acquisition techniques and data handling methods the projects will allow you to progress towards building a small DAQ and/or data analysis system.
+%While the checkpoints had you collect and analyse small datasets with equipment in the laboratory, for the project you will perform more complex analysis of a large, pre-recorded dataset produced by the LHCb experiment at CERN.
 The projects will have an open-ended aspect and are an opportunity where you can show your own initiative and demonstrate your experimental and computational skills. 
 You will be able to choose from a list of projects. %, but due to the availability of equipment, the number of spaces for each project will be limited.
 
-%The equipment specific to each DAH project will be available in red boxes.
-%Some of the parts, including Arduinos and loudspeakers, as well as the Raspberry Pi's, will be shared between Tuesday and Thursday afternoon sessions.
-%In addition, each pair will continue to use the yellow box in which you can preserve your work for use in the following week. 
+The equipment specific to each DAH project will be available in red boxes.
+Some of the parts, including Arduinos and loudspeakers, as well as the Raspberry Pis, will be shared between Tuesday and Thursday afternoon sessions.
+In addition, each pair will continue to use the yellow box in which you can preserve your work for use in the following week. 
 
-%For the DAH project you will work in pairs.
-Throughout the project, you should maintain a clear record of your work in your notebook.
-%As an example, diagrams of built circuits must be included.
+For the DAH project you will continue to work in pairs.
+Throughout the project you should maintain a clear record of your work in your notebook.
+As an example, diagrams of built circuits must be included.
 Python code must include explanatory comments.
 You will be required to submit a written report for the project, along with your code and results.
+When working in pairs you should write and submit separate reports, but you may share results and code as before.
 
-\newpage
+%\newpage
 \section{Assessment} 
 
 Data Acquisition and Handling is a continuously assessed course.
@@ -118,14 +120,16 @@ Chapter~\ref{sec:checkpoints} explains what you are expected to submit, and how 
 Please note the following:
 \begin{itemize}
 %\item In the case that a remote student is paired with a student in the lab, each student will be assessed separately. The marks awarded need not to be the same for both students. 
+\item Students should make independent submissions to Learn, and each student in a pair will be assessed separately. The marks awarded need not to be the same for both students.
 \item A marking scheme will be provided. Some of the tasks of each checkpoint may be marked together.
 \item Be sure to check what is required for submission before you leave the lab.
 %\item You will only be awarded marks if you can demonstrate that the relevant circuit functions correctly and that your Python code achieves the requested results. 
-%\item You will be assessed on your (individual) laboratory notebook and the structure and readability of your (joint) Python code.
+\item You will be assessed on your (individual) laboratory notes and the structure and readability of your (joint) Python code.
 \item You should answer the questions given in the checkpoints. These questions may require research beyond the materials provided.
 %\item You are required to have separate Python scripts for each task of a checkpoint. By doing this you will be able to demonstrate all parts of a checkpoint and not just the last task. For some tasks you will need to write results or figures to a file. Make sure that these are not overwritten by the next task.
 %\item You should be able to complete each checkpoint in one or two lab sessions, and are not required to work on them outside of these hours. Two weeks are allotted for CP2, and you should submit your results by Friday of week 4. Each following checkpoint should be completed in one laboratory session, and results submitted by the Friday of the following week.
-\item You should be able to complete the checkpoints during the lab sessions, and are not required to work on them outside of these hours. Two weeks are allotted for CP2, and you should submit your results before your lab session in the following week. Each checkpoint from 3 onwards should be completed in one laboratory session, and results submitted before the next session.
+\item You should be able to complete the checkpoints during the lab sessions, and are not required to work on them outside of these hours.
+One week is alloted for each checkpoint, and you should submit your results before your lab session in the following week.
 \end{itemize}
 
 The overall laboratory assessment will be made from the sum of marks of the check points, which constitutes 30\% of the total course mark.
@@ -137,7 +141,7 @@ This includes your project report, your DAH software (e.g. Python scripts), and 
 Guidance on how to prepare these items is given below.
 The project will be marked according to the University Common Marking Scheme. 
 
-\newpage
+%\newpage
 \subsubsection{Report Preparation}
 
 For how to write a proper report we refer you to the workshop slides on report writing in the Senior Honours (SH) Projects course, which are available at \url{https://www.wiki.ed.ac.uk/display/SP/SH+Projects}.
@@ -147,12 +151,12 @@ Most students use LaTeX or Word, either is fine.
 
 When planning and writing a report, you need to be selective about what to include in your report: it should be a concise technical document.
 However, it also needs to contain all the information required for the reader to understand what was achieved, i.e. with your report you need to be able to demonstrate to what extent the project was carried out successfully.
-%It is often useful to include circuit diagrams, pictures of the setup, or plots of measurements.
+It is often useful to include circuit diagrams, pictures of the setup, or plots of measurements.
 A good report would allow a fellow student to be able to reproduce your work.
 Students are advised to start writing their report as the project progresses.
 Experience shows that report writing always takes longer than you expect!
 
-%When working with a partner, the report must make it clear which parts of the project were carried out together, which parts are only your work, and which parts were only carried out by your partner.
+When working with a partner, the report must make it clear which parts of the project were carried out together, which parts are only your work, and which parts were only carried out by your partner.
 Each student is required to submit an individual report for the project.
 The report must contain a signed ``Own Work Declaration,'' which will be available on Learn.
 
@@ -161,7 +165,7 @@ The report must contain a signed ``Own Work Declaration,'' which will be availab
 Programming code for the DAH project, using Python, written on the Raspberry Pi or on another computer, must include explanatory comments.
 When reading a (Python) script, a reader should easily be able to understand what the script will do.
 All code written (in Python or another programming language) for the DAH project will need to be submitted using the ``Assessment'' tool on Learn.
-The files should be bundled up in a .zip or .tar file.
+The files should be bundled up in a \texttt{.zip} or \texttt{.tar} file.
 A README file should be included.
 Submission details will be provided.
 
@@ -173,7 +177,7 @@ These can be submitted using the ``Assessment'' tool on Learn, or as a link to a
 If you have questions about the suitability of material, please consult with the Course Organiser.
 All such supplementary material must be clearly listed in an appendix to the report and referred to in the main text. 
 
-\newpage
+%\newpage
 \subsubsection{Submission Deadline}
 
 The assessed material for the DAH projects will need to be submitted by {\bf 12.00 NOON on Tuesday 30th November or Thursday 2nd December 2021}.

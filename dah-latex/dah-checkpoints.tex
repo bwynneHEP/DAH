@@ -3,8 +3,8 @@
 \vspace*{-0.99cm}
 {\bf Important note}: Please consult the DAH manual to familiarise yourself with the equipment, including the Raspberry Pi, LEDs, temperature sensors, ADCs, DACs, I/O, switches, breadboard and connectors.
 The manual contains detailed instructions on how to operate the Raspberry Pi.
-To copy Python code snippets (see below) into your Python scripts, download these files from github, see \url{https://github.com/bwynneHEP/DAH}.
-Data sheets for all electronic elements are available from Dropbox, see: \url{https://www.dropbox.com/sh/gfnisnh4ntnum1d/AAAWtNL_AhcpR8PZ_QmqZpsja?n=112609310}.  
+The Python code snippets below can also be found on the course github repository, see \url{https://github.com/bwynneHEP/DAH}.
+Data sheets for all electronic elements are available from Dropbox, see \url{https://www.dropbox.com/sh/gfnisnh4ntnum1d/AAAWtNL_AhcpR8PZ_QmqZpsja?n=112609310}.  
 
 \section{Checkpoint 1: LEDs and Switches}
 
@@ -111,13 +111,13 @@ You can re-use most of it for Checkpoint~3.
 \hfill {\bf[5~marks]}
 
 \item Submit a photograph of your multimeter measuring (approximately) 1.3~V output from the DAC.
-\hfill {\bf[2~marks]}
+\null\hfill {\bf[1~marks]}
 
 \item Submit your code that controls the LED brightness using the DAC, and monitors the effect on the LDR using the ADC.
-\hfill {\bf[2~marks]}
+\null\hfill {\bf[2~marks]}
 
-\item Submit your output file.
-\hfill {\bf[1~mark]}
+%\item Submit your output file.
+%\hfill {\bf[1~mark]}
 
 \end{itemize}
 
@@ -137,22 +137,23 @@ Connect the output of the signal generator to an ADC input channel.
 Don't connect a signal with a voltage outside the range of the ADC chip: this could destroy it (and the Raspberry Pi)!
 Use Python to read a few measurements from the ADC, and make sure they behave as you expect.
 
-%\hfill [1 marks]\\
-
 \item [3.2.] Measure the waveform produced by the signal generator by writing a Python script that records 100 ADC samples and displays these on a graph of voltage vs time.
 Calculate the approximate time between samples by measuring the start and end times of your sampling and dividing the difference by 100.
 You can use the pylab interface for plotting graphs --- example files are available on GitHub.
 Always label plots correctly with title and axes and save these to a file (pdf format).
 
-%\hfill [2 marks] \\
-
-%\item [3.3.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.   First connect the signal from the signal generator to the oscilloscope. Read the input voltage for the high and low sections of the square waveform off the oscilloscope screen. For this use the trigger threshold dial to determine these voltage levels as precisely as possible. Then connect the signal to an ADC input channel. Write a Python script that takes 100 ADC samples and writes these into a file, then expand the script to determine the average ADC voltages for the high and low sections of the square waveform and record the results. Reduce the amplitude of the input waveform by a factor of two and repeat above procedure. Plot the four calibration measurements, i.e. the measured ADC voltages (from the two sets of measurements of the  high and low sections) versus the four input voltages (measured with the oscilloscope) on a graph and comment.
-
-%\hfill [2 marks] \\
-
 \item [3.3.] Given the time that you calculated elapses between ADC samples, what is the highest input signal frequency that you can expect to measure correctly?
 (You may wish to research signal sampling a little before jumping to your answer...)
 Test input signals at a range of different frequencies to see if the results are as you expect.
+
+\item [3.4.] Calibrate the voltage scale of the ADC output with respect to the voltage scale displayed on the oscilloscope by using a square waveform that closely matches the ADC input range.
+First connect the signal from the signal generator to the oscilloscope.
+Read the input voltage for the high and low sections of the square waveform from the oscilloscope screen.
+For this use the trigger threshold dial to determine these voltage levels as precisely as possible.
+Then connect the signal to an ADC input channel.
+Write a Python script that takes 100 ADC samples and finds the average voltages for the high and low sections of the square waveform separately.
+Reduce the amplitude of the input waveform by a factor of about two and repeat above procedure.
+Plot the four calibration measurements, i.e. the measured ADC voltages versus the four input voltages (measured with the oscilloscope) on a graph.
 
 %\item[3.4.]	What is the maximum signal frequency with which you can properly record a given repetitive signal?   First, consider which would be the best waveform for this investigation. What is the sampling frequency? Explain what happens when a signal is undersampled. Make a plot with a waveform that is undersampled.   
 
@@ -166,21 +167,26 @@ Test input signals at a range of different frequencies to see if the results are
 
 \end{enumerate}
 
+\newpage
 {\bf Assessment tasks: submit in Learn}
 
 \begin{itemize}
 
-\item Submit your code for measuring the signal generator output with your ADC.
-\hfill {\bf[2~marks]}
+\item Submit your code for measuring the signal generator output with your ADC. \\
+\null\hfill {\bf[2~marks]}
 
-\item Submit a plot showing 100 sampled values from a 10~Hz sinusoidal signal.
-\hfill {\bf[1~mark]}
+\item Submit your code for finding the average high and low values of the square wave used for calibration.
+\null\hfill {\bf[2~marks]}
+
+\item Submit a your calibration plot from part 3.4.
+\null\hfill {\bf[1~mark]}
 
 \item Submit a document with the following information:
 \begin{enumerate}
-\item What time did you calculate elapsed between samples?
+%\item What time did you calculate elapsed between samples?
 \item What did you calculate was the highest signal frequency you can measure correctly (and why)? Provide a plot showing your sampling of an input waveform at this frequency.
 \item Explain what happens when a waveform is undersampled, and provide a plot that shows what you describe.
+\item Comment on your calibration plot --- how well does your ADC perform, and how could you use this data to improve future results?
 \end{enumerate}
 \hfill {\bf[3~marks]}
 
@@ -217,6 +223,7 @@ Make sure you understand how the value you give to it affects the LEDs.
 
 \item [4.3.] Connect a push button switch to pin P7 of the expander chip.
 Modify your Python script so that the button can be used to change the LED pattern.
+Each press of the button should change the pattern, without requiring that the button be held down.
 
 \lstinputlisting{../scripts/checkpoint_4b.py}
 %\hfill [3 marks]\\
@@ -238,10 +245,10 @@ Modify your Python script so that the button can be used to change the LED patte
 
 \item Submit your code where you use the \texttt{portWrite} command to display multiple different patterns with four LEDs.
 Ensure that the code comments explain how \texttt{portWrite} creates a particular pattern, and how this changes when the button is pressed.
-\hfill {\bf[3~marks]}
+\null\hfill {\bf[4~marks]}
 
 \item Submit photos (or video if possible) of the LEDs changing as your code runs.
-\hfill {\bf[1~mark]}
+\null\hfill {\bf[1~mark]}
 
 \end{itemize}
 
@@ -330,23 +337,26 @@ Now ensure that you can read out your two temperature sensors simultaneously in 
 %
 %What is the smallest change in temperature that a sensor can report? Explain this with reference to the datasheet, and how the temperature information is encoded.
 %
-%Investigate the accuracy of the sensor readings by looking at the stability of the measurement with time, and by comparing the outputs of your two sensors. You can probably assume that the ambient temperature in the lab is constant, but shielding your sensors from breezes may help.
+Investigate the accuracy of the sensor readings by looking at the stability of the measurement with time, and by comparing the outputs of your two sensors.
+You can probably assume that the ambient temperature in the lab is constant, but shielding your sensors from breezes may help.
 
-%Modify your graphing code from part 5.2 to make histograms of the temperature measurements of the two sensors. 
+\newpage
 
-%You can use the pylab histogram command:\\
-%\lstinputlisting{../scripts/checkpoint_5d.py}
+Modify your graphing code from part 5.2 to make histograms of the temperature measurements of the two sensors.
+Plot data from each sensor as separate histograms on a shared set of axes.
+You can use the pylab histogram command:
+\lstinputlisting{../scripts/checkpoint_5d.py}
 %Make also a graph of the difference between the temperature of the two sensors. Determine the RMS value of a set of temperature difference measurements between the two sensors. Explain your results. Are these consistent with the datasheet?
 
 %\hfill [3 marks]
 
-Modify your graphing code from part 5.2 to display data from both temperature sensors on a single graph.
+%Modify your graphing code from part 5.2 to display data from both temperature sensors on a single graph.
 Take a set of temperature measurements from both sensors reading the (hopefully) constant background temperature in the lab, and calculate the mean and standard deviation for each sensor separately.
 
 
 \end{enumerate}
 
-\newpage
+%\newpage
 {\bf Assessment tasks: submit in Learn}
 
 \begin{itemize}
@@ -364,9 +374,113 @@ Is this what you would expect from the datasheet?
 
 \item Submit a plot showing the temperature variation when you touch a sensor with your finger, and then release it.
 Annotate the plot, or provide a caption, to explain the shape of the temperature trend line.
-\hfill {\bf[1~mark]}
+\null\hfill {\bf[1~mark]}
 
-\item Submit your code for plotting measurements from two temperature sensors on the same graph.
-\hfill {\bf[2~marks]}
+\item Submit your code for plotting measurements from two temperature sensors on the same graph, and calculating their mean and standard deviation.
+\null\hfill {\bf[3~marks]}
+
+\item Submit a plot showing the histograms from the two temperature sensors.
+\null\hfill {\bf[1~mark]}
 
 \end{itemize}
+
+
+\newpage
+\section{Checkpoint 6: Data Handling and Analysis}
+
+\begin{enumerate}
+
+\item [6.1.] This is a data handling exercise and the Raspberry Pi is not required, but can still be used.
+You may find it faster to use the CPlab computers --- there are several available in the DAH laboratory.
+Alternatively you could use a personal laptop.
+You will need the following Python libraries:
+\lstinputlisting{../scripts/checkpoint_6a.py}
+
+The LHCb experiment at the Large Hadron Collider at CERN has recorded a sample of muon pairs with invariant masses in the range of 8.5 to 11 GeV/$c^2$.
+Three clear peaks are observed in this mass spectrum.
+These correspond to the production of Upsilon mesons, which are bound states of a $b$ and a anti-$b$ quark.
+These states are known as the $\Upsilon \rm (1S)$, $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ mesons where the $\Upsilon \rm (1S)$ meson is the ground state and the $\Upsilon \rm (2S)$  and $\Upsilon \rm (3S)$ states are radial excitations (for LHCb paper, see \href{https://link.springer.com/article/10.1007/JHEP06(2013)064}{DOI: 10.1007/JHEP06(2013)064}).
+
+\begin{center}
+    \includegraphics[width=9cm]{figs/mu-pair-mass}
+\end{center}
+
+Download the file upsilons-mass-xaa.txt from the DAH Dropbox, which contains the invariant masses of a large number of muon pairs in units of GeV/$c^2$ in text format. 
+Write a python script that reads the data from this file and plots a histogram of all the masses, choosing a reasonable bin width.
+Always label plots correctly with title and axes and save these to a file.
+[Hint: The bin width should be chosen such that each of the three peaks is clearly resolved and represented by a sufficient number of bins for analysis.]
+
+%\hfill [2 marks]
+
+\item [6.2.] Determine the masses of the three particles by determining the bins with the highest number of entries in the peak regions.
+Divide the histogram into three peak regions and write a local peak finding method for this part.
+%What are the mass differences between the $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ states with respect to the $\Upsilon \rm (1S)$ meson? %By inspecting visually the muon-pair mass
+%spectrum, determine the Full Width Half Maximum (FWHM) of the $\Upsilon \rm (1S)$ mass peak.
+
+%\hfill [2 marks]
+
+
+\item [6.3.] Determine the mass of the $\Upsilon \rm (1S)$ meson and its uncertainty.
+This can be achieved by several methods.
+First by looking at the mass spectrum, choose a suitable region around the $\Upsilon \rm (1S)$ mass peak.
+Calculate the mean, the unbiased variance and standard deviation for the events in this region.
+Use these values to determine the standard deviation of the mean.
+Comment on possible biases for this method.
+
+The mass peaks corresponding to the three $\Upsilon$ mesons can be described reasonably well by a Gaussian function,
+$f(x) = \frac{S}{\sigma \sqrt{2\pi}} \exp{\left( -\frac{(x-\mu)^2}{2\sigma^2} \right)}$
+where $x$ is the invariant mass of the muon pairs, $\mu$ is the mass of the $\Upsilon \rm (1S)$ meson, $\sigma$ is the Gaussian width (mass resolution) and $S$ is the total number of signal events. 
+By inspecting visually the muon-pair mass histogram, determine the Full Width Half Maximum (FWHM) of the $\Upsilon \rm (1S)$ mass peak.
+Assuming a Gaussian signal shape estimate the mass resolution $\sigma$ from the FWHM. %of the $\Upsilon \rm (1S)$  peak. 
+Compare this result for the mass resolution of the $\Upsilon \rm (1S)$ peak with the standard deviation determined above and comment.
+
+Compare your mass measurement with the Particle Data Group (\url{pdg.lbl.gov}) and comment.
+[Hint: The PDG lists the properties of particles. Select ``pdgLive - Interactive Listings'' followed by ``Mesons b anti-b'' to find the $\Upsilon \rm (1S)$ meson.]
+
+%\hfill [3 marks]\\
+
+
+\item [6.4.] In the muon-pair mass spectrum define a signal region of width $\pm 150\; {\rm MeV}/c^2$ around the $\Upsilon \rm (1S)$ peak position and determine the number of events $N$ in this region.
+Define an upper and lower sideband region where there are only background events.
+These sidebands should each be half as wide as the signal region and located at masses equidistant from the $\Upsilon \rm (1S)$ peak position.
+Assuming that the background is falling linearly with the muon-pair mass, determine the number of background events $B$ in the signal region (below the $\Upsilon \rm (1S)$ mass peak).
+Perform either a linear least squares fit in the sideband regions or use the sideband subtraction method (from the lectures) for this.
+Determine the number of signal events $S$ in the signal region.
+
+%Alternatively, if you know how to perform a fit you may choose fitting the $\Upsilon \rm (1S)$   peak in the mass spectrum for this part.
+
+% Assuming Gaussian statistics for N and using the mass resolution ? determine the statistical error %on the mass of the ?(1S) meson. 
+
+%\hfill [3 marks]
+
+%6.4. Download the file upsilons-mass-pt-xaa.txt from the DAH Dropbox which, in addition to the masses, also contains the transverse momenta pT of the muon- pairs in units of GeV/c in text format. For an explanation of the transverse momentum, see the LHCb paper, referred to above. Write a python script that reads in these data and plot a histogram of the transverse momenta for all events. Plot a 2-dimensional histogram of pT versus mass for all events, choosing 50 bins in pT and 100 bins in mass.
+%[Hint (python):]
+%# Splitting a line with two strings separated by a blank space line = line.split()
+%12
+%[1 mark]
+
+\end{enumerate}
+
+%\newpage
+{\bf Assessment tasks: submit in Learn}
+
+\begin{itemize}
+
+\item Submit a document with the following information:
+\begin{enumerate}
+\item What are the mass differences between the $\Upsilon \rm (2S)$ and $\Upsilon \rm (3S)$ states with respect to the $\Upsilon \rm (1S)$ meson (using your peak-finding method)?
+\item Show your calculations and results for sections 6.3.
+\item Show your results from section 6.4. Explain the method you used, with code or plots as appropriate.
+\end{enumerate}
+\hfill {\bf[5~marks]}
+
+\item Submit a histogram showing the three Upsilon mass peaks.
+\null\hfill {\bf[1~marks]}
+
+\item Submit your code for plotting the three Upsilon mass peaks, and finding the mass values corresponding to each peak.
+If this code includes calculations for other parts of the checkpoint, comment it appropriately.
+\null\hfill {\bf[2~marks]}
+
+\end{itemize}
+
+

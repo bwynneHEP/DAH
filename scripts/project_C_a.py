@@ -1,7 +1,5 @@
 import numpy as np
-import pygame
-import time
-import math
+import pygame, time, math
 import pylab as pl
 
 # Some constants
@@ -38,6 +36,7 @@ def SineWave( pitch, volume, duration ):
 # 2-channel (stereo), 16-bit signed integer value output at 44khz
 pygame.mixer.init( frequency=outputRate, channels=2, size=-16)
 
+# ...
 # Create a note (C5)
 sin523 = SineWave( 523, 1.0, 1.0 )
 
