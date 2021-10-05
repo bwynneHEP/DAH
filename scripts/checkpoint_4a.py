@@ -1,8 +1,8 @@
 # Import I/O expander chip library
-from DAH import PCF8574A
+from DAH import PCF8574
 
 # Setup chip
-pcf = PCF8574A(address=0x38)
+pcf = PCF8574(address=0x38)
 
 # A variable to store the pin number for the LED
 LED0 = 0
