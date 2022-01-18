@@ -346,12 +346,13 @@ Toggling power to the Peltier in an uncontrolled fashion is unlikely to give goo
 \newpage
 You could enhance the scope of your project in the following ways:
 \begin{enumerate}
-	\item Try varying the cooling power of your Peltier using pulse-width modulation.
-		Here you would use your Raspberry Pi GPIO pin to create a square wave to toggle the power transistor on and off.
-		You then adjust what percentage of time is spent in the on or off state: the `duty cycle.'
+  \item Try varying the cooling power of your Peltier using pulse-width modulation.
+    Here you would use your Raspberry Pi GPIO pin to create a square wave to toggle the power transistor on and off.
+    You then adjust what percentage of time is spent in the on or off state: the `duty cycle.'
     The \texttt{RPi} library that you used in the checkpoints has a function for pulse-width modulation.
-	\item Write an interface that allows the user to start and stop the temperature control programme, show the status and temperature of the Peltier, and change the temperature value of the thermostat.
-	\item Consider running the Peltier as a heating element.
+  \item Research the Proportional Integral Derivative (PID) control approach, and use it to improve the stability of your temperature.
+  \item Write an interface that allows the user to start and stop the temperature control programme, show the status and temperature of the Peltier, and change the temperature value of the thermostat.
+  \item Consider running the Peltier as a heating element.
     What changes are required to the sensor, the circuit and the control programs?
 \end{enumerate}
 
