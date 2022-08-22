@@ -830,6 +830,12 @@ Download the Python script \texttt{char\_lcd\_plate.py} from \url{https://github
 Run this script to understand how to program the LCD display.
 Consulting the instructions at \url{https://learn.adafruit.com/adafruit-16x2-character-lcd-plus-keypad-for-raspberry-pi/python-usage}, write a Python script which regularly reads and updates temperature and humidity on the LCD display.
 
+\item Calibrate the measurements.
+In the lab you will find some Lascar Electronics data loggers, which can record ambient conditions over time.
+Compare the results from a data logger with those from your weather station, and calculate what corrections to apply to your weather station data to improve the accuracy.
+
+\item Add more sensors to your weather station, and report their outputs.
+
 \end{enumerate}
 
 % COMMENTED
@@ -926,6 +932,42 @@ use hairdryer
 \input{dah-project-planning}
 
 \newpage
+\section{Project H: Develop a Small Robotic Sensor Platform}
+
+\subsection{Goals of project}
+
+Because of the Raspberry Pi's small size and low power requirements, it is a popular choice for the controller of educational robot kits.
+A variety of these kits are available, including some Lego sets compatible with the Pi.
+Your goal will be to produce a robot of your own design.
+
+\subsection{Requirements}
+
+There is the possibility to produce many different types of robot.
+You might chose a freely-moving wheeled rover, or machine that stands on a desk and performs some task in that location.
+Different robot kits may be more suitable for different designs, and there are a limited number of kits available on a first-come-first-served basis.
+
+With that in mind, the only firm requirement for this project is that your robot should have a sensor input, which prompts a mechanical output.
+In other words, your robot must detect something in the laboratory, and then perform some kind of motion as a result.
+This could mean following a line on the floor, or it could mean sorting objects of different colours, or anything else you can think of.
+The robot must be controlled by the Raspberry Pi.
+
+\subsection{Problem Solving}
+
+Unlike other projects there is no example to get you started, and no standard set of kit to work with.
+Most of the robot kits are provided untested, as we receive them from the manufacturer.
+You are expected to get them working yourselves, and to fix or work around problems as they occur.
+Demonstrators will of course be happy to advise you, but ultimately it will be your responsibility to find out how to use the apparatus.
+
+Since you will be building your own robot, you will not need to share the kit with a group from the other Tue/Thu session that you are not in.
+However, this also means you are responsible for building the robot yourselves, and repairing it if it breaks.
+There may well not be any spare kits to use, and you may have the only one of a particular design.
+
+In the checkpoints you will have noticed that it is much harder to deal with experiments in real laboratory conditions than idealised data purely within the computer.
+This is doubly true when it comes to trying to control motion in the lab with motors.
+You are strongly advised to build up your project gradually, in testable stages, rather than attempting a complex design from the start and having nothing work.
+
+\input{dah-project-planning}
+
 \section{Project X: Develop a Project or Suggest Your Own Project}
 
 \subsection{Goals of project}
